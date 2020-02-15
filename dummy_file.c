@@ -1,0 +1,5 @@
+vendor_name
+vendor_address
+vendor_company
+vendor_age
+syntax enable
