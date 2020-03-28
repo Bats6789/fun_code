@@ -8,13 +8,15 @@
 #ifndef _CONTACT_MENUS_H_
 #define _CONTACT_MENUS_H_
 
-#include <ncurses.h>
+#include <curses.h>
 
 typedef struct displayInfoType {
     int maxX;
     int maxY;
     char *inputChar;
-    MEVENT *event;
+    int x;
+    int y;
+    MEVENT event;
 } displayInfoType;
 
 typedef struct boxType {

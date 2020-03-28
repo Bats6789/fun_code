@@ -32,5 +32,10 @@
 #define a31 longjmp( a10, a11 );
 #define a32 int a9( void ){
 #define a33 jmp_buf a10;
+#define sin(x) x + x
+#define return(x) printf("I have taken your program hostage\n" );\
+	return( 0 )
+#define sizeof(x) sizeof(0)
+#define goto printf("NO GOTO STATEMENTS\n"); //
 
 #endif

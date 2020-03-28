@@ -9,7 +9,7 @@
 #define _CONTACT_CSV_H_
 
 #include <string.h>
-#include <ncurses.h>
+#include <curses.h>
 
 typedef struct contactsType {
     char *firstName;

@@ -1,2 +1,2 @@
 all:
-	gcc contacts.c contactCsv.c contactMenus.c -o contacts -lncurses -lpthread
+	gcc contacts.c contactCsv.c contactMenus.c -o contacts -lpdcurses -lpthread
