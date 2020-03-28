@@ -2,6 +2,7 @@
  * Name: bubbleSort.c
  * Auth: Blake Wingard
  * Desc: Performs a live demonstration of a bubble sort.
+ * Vers: 1.0.2 03/28/2020 CBW - Implemented numbers and swapping.
  * Vers: 1.0.1 03/13/2020 CBW - Added circles.
  * Vers: 1.0.0 03/10/2020 CBW - Original code.
  */
