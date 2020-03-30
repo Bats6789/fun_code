@@ -2,6 +2,7 @@
  * Name: contacts.c
  * Desc: A contact manager written in ncurses.
  * Auth: Blake Wingard
+ * Vers: 1.0.1 03/28/2020 CBW - Added other menu functions.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
  */
 
@@ -12,20 +13,6 @@
 #include <unistd.h>
 #include "contactCsv.h"
 #include "contactMenus.h"
-
-#define BOX_WIDTH 20
-#define BOX_HEIGHT 5
-
-int printAdd( int startY, int startX );
-int printRemove( int startY, int startX );
-int printDisplay( int startY, int startX );
-int printExport( int startY, int startX );
-int printExit( int startY, int startX );
-int mouseOver( displayInfoType displayInfo, boxType box );
-
-typedef enum selectedType {
-	None, Add, Remove, Display, Export, Exit
-} selectedType;
 
 int main( int argc, char **argv ){
 	int quit;
@@ -38,7 +25,6 @@ int main( int argc, char **argv ){
 	boxType exportBox;
 	boxType exitBox;
 	selectedType selected;
-	WINDOW *window;
 
 	// initialize
 	quit = 0;
@@ -46,9 +32,10 @@ int main( int argc, char **argv ){
 	headContact = NULL;
 
 	// start ncurses stuff
-	window = initscr();
+	displayInfo.window = initscr();
 	raw();
 	noecho();
+	nocbreak();
 	start_color();
 	if( has_colors() == FALSE ) {
 		endwin();
@@ -85,7 +72,11 @@ int main( int argc, char **argv ){
 	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
 
 	// import list
-	importContact( &headContact, "contact.csv" );
+	if( importContact( &headContact, "contact.csv" ) < 0 ){
+		endwin();
+		printf( "ERROR: Failed to create HeadNode\n" );
+		return( -1 );
+	}
 
 	while( quit != 1 ){
 		// display menu
@@ -127,7 +118,7 @@ int main( int argc, char **argv ){
 		refresh();
 
 		// collect info
-		chunk = wgetch( window );
+		chunk = wgetch( displayInfo.window );
 		erase();
 
 		// determine what to do with collected info
@@ -144,18 +135,34 @@ int main( int argc, char **argv ){
 		} else if( chunk == 'x' ){
 			selected = Exit;
 		} else if( chunk == KEY_MOUSE ){
+			/*
 			request_mouse_pos();
-			wmouse_position( window, &(displayInfo.y), &(displayInfo.x));
-			if( mouseOver( displayInfo, addBox )){
-				selected = Add;
-			} else if( mouseOver( displayInfo, removeBox )){
-				selected = Remove;
-			} else if( mouseOver( displayInfo, displayBox )){
-				selected = Display;
-			} else if( mouseOver( displayInfo, exportBox )){
-				selected = Export;
-			} else if( mouseOver( displayInfo, exitBox )){
-				selected = Exit;
+			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
+			*/
+			// used nc_getmouse to check if the mouse was clicked
+			nc_getmouse( &(displayInfo.event));
+			displayInfo.y = displayInfo.event.y;
+			displayInfo.x = displayInfo.event.x;
+			if( displayInfo.event.bstate & BUTTON1_PRESSED ){
+				if( mouseOver( displayInfo, addBox )){
+					selected = Add;
+					addMenu( displayInfo, headContact );
+					chunk = '\0';
+				} else if( mouseOver( displayInfo, removeBox )){
+					selected = Remove;
+					removeMenu( displayInfo, headContact );
+					chunk = '\0';
+				} else if( mouseOver( displayInfo, displayBox )){
+					selected = Display;
+					displayMenu( displayInfo, headContact );
+					chunk = '\0';
+				} else if( mouseOver( displayInfo, exportBox )){
+					selected = Export;
+					exportMenu( displayInfo, headContact );
+					chunk = '\0';
+				} else if( mouseOver( displayInfo, exitBox )){
+					selected = Exit;
+				}
 			}
 		} else {
 			selected = None;
@@ -187,65 +194,3 @@ int main( int argc, char **argv ){
 	return( EXIT_SUCCESS );
 }
 
-int printAdd( int startY, int startX ){
-	mvprintw( startY + 0, startX, "+------------------+" );
-	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|       ADD        |" );
-	mvprintw( startY + 3, startX, "|                  |" );
-	mvprintw( startY + 4, startX, "+------------------+" );
-	return( 0 );
-}
-
-int printRemove( int startY, int startX ){
-	mvprintw( startY + 0, startX, "+------------------+" );
-	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|      REMOVE      |" );
-	mvprintw( startY + 3, startX, "|                  |" );
-	mvprintw( startY + 4, startX, "+------------------+" );
-	return( 0 );
-}
-
-int printDisplay( int startY, int startX ){
-	mvprintw( startY + 0, startX, "+------------------+" );
-	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|      DISPLAY     |" );
-	mvprintw( startY + 3, startX, "|                  |" );
-	mvprintw( startY + 4, startX, "+------------------+" );
-	return( 0 );
-}
-
-int printExport( int startY, int startX ){
-	mvprintw( startY + 0, startX, "+------------------+" );
-	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|      EXPORT      |" );
-	mvprintw( startY + 3, startX, "|                  |" );
-	mvprintw( startY + 4, startX, "+------------------+" );
-	return( 0 );
-}
-
-int printExit( int startY, int startX ){
-	mvprintw( startY + 0, startX, "+------------------+" );
-	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|       EXIT       |" );
-	mvprintw( startY + 3, startX, "|                  |" );
-	mvprintw( startY + 4, startX, "+------------------+" );
-	return( 0 );
-}
-
-/*
- * Name: mouseOver
- * Desc: Checks if the mouse if over the box.
- * Args:
- *      displayInfo - the structure containing the mouse location.
- *      box         - the structure of the box.
- */
-int mouseOver( displayInfoType displayInfo, boxType box ){
-	int exitCode;
-	if( displayInfo.x >= box.startX && displayInfo.x < box.endX &&
-			displayInfo.y >= box.startY && displayInfo.y < box.endY ){
-		exitCode = 1;
-	} else {
-		exitCode = 0;
-	}
-	return( exitCode );
-}
