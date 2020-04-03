@@ -1,0 +1,3 @@
+What if the matrix is a lower bound triangle.
+What if a zero row appears in the middle.
+What if the row,row column is a zero. and the rest is not zero.
