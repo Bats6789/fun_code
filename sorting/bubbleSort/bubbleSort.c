@@ -2,6 +2,7 @@
  * Name: bubbleSort.c
  * Auth: Blake Wingard
  * Desc: Performs a live demonstration of a bubble sort.
+ * Vers: 1.0.4 04/03/2020 CBW - Minor optimization.
  * Vers: 1.0.3 03/30/2020 CBW - Added comments for clarity.
  * Vers: 1.0.2 03/28/2020 CBW - Implemented numbers and swapping.
  * Vers: 1.0.1 03/13/2020 CBW - Added circles.
@@ -127,7 +128,7 @@ int main( int argc, char **argv ){
 	backgroundColor.b = 0;
 	backgroundColor.a = 255;
 
-	// grey
+	// gray
 	boxColor.r = 128;
 	boxColor.g = 128;
 	boxColor.b = 128;
@@ -255,26 +256,6 @@ int main( int argc, char **argv ){
 		}
 
 
-		// draw compare box
-		if( showBox == 1 ){
-			if( SDL_SetRenderDrawColor( renderer, boxColor.r, boxColor.g, boxColor.b,
-						boxColor.a ) != 0 ){
-				SDL_Log( "Unable to change color of renderer to gray: %s", 
-						SDL_GetError());
-				return( EXIT_FAILURE );
-			}
-			box.x = circleProp[ boxCompareNum ].dst.x;
-			box.y = circleProp[ boxCompareNum ].dst.y;
-			if( SDL_RenderFillRect( renderer, &box ) != 0 ){
-				SDL_Log( "Failed to draw box: %s", SDL_GetError());
-				return( EXIT_FAILURE );
-			}
-			if( SDL_SetRenderDrawColor( renderer, backgroundColor.r, backgroundColor.g,
-						backgroundColor.b, backgroundColor.a ) != 0 ){
-				SDL_Log( "Unable to change color of renderer: %s", SDL_GetError());
-				return( EXIT_FAILURE );
-			}
-		}
 		// draw temp box
 		if( SDL_SetRenderDrawColor( renderer, boxColor.r, boxColor.g, boxColor.b,
 					boxColor.a ) != 0 ){
@@ -286,10 +267,15 @@ int main( int argc, char **argv ){
 			SDL_Log( "Failed to draw box: %s", SDL_GetError());
 			return( EXIT_FAILURE );
 		}
-		if( SDL_SetRenderDrawColor( renderer, backgroundColor.r, backgroundColor.g,
-					backgroundColor.b, backgroundColor.a ) != 0 ){
-			SDL_Log( "Unable to change color of renderer: %s", SDL_GetError());
-			return( EXIT_FAILURE );
+
+		// draw compare box
+		if( showBox == 1 ){
+			box.x = circleProp[ boxCompareNum ].dst.x;
+			box.y = circleProp[ boxCompareNum ].dst.y;
+			if( SDL_RenderFillRect( renderer, &box ) != 0 ){
+				SDL_Log( "Failed to draw box: %s", SDL_GetError());
+				return( EXIT_FAILURE );
+			}
 		}
 
 		// swap circles
