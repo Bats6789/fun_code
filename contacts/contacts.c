@@ -136,9 +136,9 @@ int main( int argc, char **argv ){
 			selected = Exit;
 		} else if( chunk == KEY_MOUSE ){
 			/*
-			request_mouse_pos();
-			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
-			*/
+			   request_mouse_pos();
+			   wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
+			   */
 			// used nc_getmouse to check if the mouse was clicked
 			nc_getmouse( &(displayInfo.event));
 			displayInfo.y = displayInfo.event.y;
