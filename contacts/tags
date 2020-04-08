@@ -75,6 +75,7 @@ ascending	contactCsv.h	/^	ascending, decending$/;"	e	enum:sortType
 boxType	contactMenus.h	/^typedef struct boxType {$/;"	s
 boxType	contactMenus.h	/^} boxType;$/;"	t	typeref:struct:boxType
 columnType	contactCsv.h	/^} columnType;$/;"	t	typeref:enum:sortColumnType
+compareContact	contactCsv.c	/^int compareContact( contactsType firstContact, contactsType secondContact, columnType column ) {$/;"	f	typeref:typename:int
 contactsType	contactCsv.h	/^typedef struct contactsType {$/;"	s
 contactsType	contactCsv.h	/^} contactsType;$/;"	t	typeref:struct:contactsType
 decending	contactCsv.h	/^	ascending, decending$/;"	e	enum:sortType

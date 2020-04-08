@@ -193,3 +193,25 @@ int sortContact( contactsType **headContact, sortType sort, columnType column ){
 	printw( "sortContact function entered" );
 	return( 0 );
 }
+
+int compareContact( contactsType firstContact, contactsType secondContact, columnType column ) {
+	int results;
+
+	if( column == firstName ){
+		results = strcmp( firstContact.firstName, secondContact.firstName );
+	} else if( column == middleName ){
+		results = strcmp( firstContact.middleName, secondContact.middleName );
+	} else if( column == lastName ){
+		results = strcmp( firstContact.lastName, secondContact.lastName );
+	} else if( column == phoneNumber ){
+		results = strcmp( firstContact.phoneNumber, secondContact.phoneNumber );
+	} else if( column == address ){
+		results = strcmp( firstContact.address, secondContact.address );
+	} else if( column == state ){
+		results = strcmp( firstContact.state, secondContact.state );
+	} else if( column == zipcode ){
+		results = strcmp( firstContact.zipcode, secondContact.zipcode );
+	}
+
+	return( results );
+}
