@@ -386,6 +386,7 @@ int exportMenu( displayInfoType displayInfo, contactsType *headContact ){
 	return( 0 );
 }
 
+// Print buttons
 int printAdd( int startY, int startX ){
 	mvprintw( startY + 0, startX, "+------------------+" );
 	mvprintw( startY + 1, startX, "|                  |" );
