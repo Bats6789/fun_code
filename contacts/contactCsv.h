@@ -46,8 +46,7 @@ typedef enum sortColumnType {
  * Name: importContact
  * Desc: Imports contacts from a list into a head node. 
  * Args: 
- * 	contactsType *headContact - the head node of the contact list.
- * 	char *fileName - the name of the file.
+ * 	<+args+>
  */
 int importContact( contactsType **headContact, char *fileName );
 
@@ -88,4 +87,13 @@ int removeContact( contactsType *headContact, contactsType *contact );
  */
 int sortContact( contactsType **headContact, sortType sort, columnType column );
 
+/* 
+ * Name: compareContact
+ * Desc: Compares Two contacts to each other. 
+ * Args:
+ * 	contactsType firstContact - the first contact
+ * 	contactsType secondContact - the second contact
+ * 	columnType column - the column being used for the comparison.
+ */
+int compareContact( contactsType firstContact, contactsType secondContact, columnType column );
 #endif
