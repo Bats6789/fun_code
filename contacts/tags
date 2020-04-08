@@ -1,0 +1,136 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+%	contact.vim	/^nmap <silent> % <Plug>(MatchitNormalForward)$/;"	m
+%	contact.vim	/^omap <silent> % <Plug>(MatchitOperationForward)$/;"	m
+%	contact.vim	/^xmap <silent> % <Plug>(MatchitVisualForward)$/;"	m
+<C-U>	contact.vim	/^inoremap <C-U> u$/;"	m
+<Plug>(MatchitNormalBackward)	contact.vim	/^nnoremap <silent> <Plug>(MatchitNormalBackward) :call matchit#Match_wrapper('',0,'n')$/;"	m
+<Plug>(MatchitNormalForward)	contact.vim	/^nnoremap <silent> <Plug>(MatchitNormalForward) :call matchit#Match_wrapper('',1,'n')$/;"	m
+<Plug>(MatchitNormalMultiBackward)	contact.vim	/^nnoremap <silent> <Plug>(MatchitNormalMultiBackward) :call matchit#MultiMatch("bW", "n")$/;"	m
+<Plug>(MatchitNormalMultiForward)	contact.vim	/^nnoremap <silent> <Plug>(MatchitNormalMultiForward) :call matchit#MultiMatch("W",  "n")$/;"	m
+<Plug>(MatchitOperationBackward)	contact.vim	/^onoremap <silent> <Plug>(MatchitOperationBackward) :call matchit#Match_wrapper('',0,'o')$/;"	m
+<Plug>(MatchitOperationForward)	contact.vim	/^onoremap <silent> <Plug>(MatchitOperationForward) :call matchit#Match_wrapper('',1,'o')$/;"	m
+<Plug>(MatchitOperationMultiBackward)	contact.vim	/^onoremap <silent> <Plug>(MatchitOperationMultiBackward) :call matchit#MultiMatch("bW", "o")$/;"	m
+<Plug>(MatchitOperationMultiForward)	contact.vim	/^onoremap <silent> <Plug>(MatchitOperationMultiForward) :call matchit#MultiMatch("W",  "o")$/;"	m
+<Plug>(MatchitVisualBackward)	contact.vim	/^xnoremap <silent> <Plug>(MatchitVisualBackward) :call matchit#Match_wrapper('',0,'v')$/;"	m
+<Plug>(MatchitVisualForward)	contact.vim	/^xnoremap <silent> <Plug>(MatchitVisualForward) :call matchit#Match_wrapper('',1,'v')$/;"	m
+<Plug>(MatchitVisualMultiBackward)	contact.vim	/^xnoremap <silent> <Plug>(MatchitVisualMultiBackward) :call matchit#MultiMatch("bW", "n")$/;"	m
+<Plug>(MatchitVisualMultiForward)	contact.vim	/^xnoremap <silent> <Plug>(MatchitVisualMultiForward) :call matchit#MultiMatch("W",  "n")$/;"	m
+<Plug>(MatchitVisualTextObject)	contact.vim	/^xmap <silent> <Plug>(MatchitVisualTextObject) <Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitV/;"	m
+<Plug>NetrwBrowseX	contact.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX/;"	m
+<Plug>NetrwBrowseXVis	contact.vim	/^vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
+ADDRESS_SIZE	contactCsv.h	/^#define ADDRESS_SIZE /;"	d
+Add	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+BOX_HEIGHT	contactMenus.h	/^#define BOX_HEIGHT /;"	d
+BOX_WIDTH	contactMenus.h	/^#define BOX_WIDTH /;"	d
+Display	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+Exit	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+Export	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+FIRST_NAME_SIZE	contactCsv.h	/^#define FIRST_NAME_SIZE /;"	d
+LAST_NAME_SIZE	contactCsv.h	/^#define LAST_NAME_SIZE /;"	d
+MIDDLE_NAME_SIZE	contactCsv.h	/^#define MIDDLE_NAME_SIZE /;"	d
+None	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+PHONE_NUMBER_SIZE	contactCsv.h	/^#define PHONE_NUMBER_SIZE /;"	d
+Q	contact.vim	/^map Q gq$/;"	m
+Remove	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
+STATE_SIZE	contactCsv.h	/^#define STATE_SIZE /;"	d
+SessionLoad	contact.vim	/^let SessionLoad = 1$/;"	v
+ZIPCODE_SIZE	contactCsv.h	/^#define ZIPCODE_SIZE /;"	d
+[%	contact.vim	/^nmap <silent> [% <Plug>(MatchitNormalMultiBackward)$/;"	m
+[%	contact.vim	/^omap <silent> [% <Plug>(MatchitOperationMultiBackward)$/;"	m
+[%	contact.vim	/^xmap <silent> [% <Plug>(MatchitVisualMultiBackward)$/;"	m
+\x16\x15	contact.vim	/^inoremap  u$/;"	m
+\x16\x18	contact.vim	/^vmap  "*d$/;"	m
+\x16Î\x16Ô	contact.vim	/^imap ÎÔ *$/;"	m
+\x16Î\x16Ô	contact.vim	/^nmap ÎÔ "*P$/;"	m
+\x16Î\x16Ô	contact.vim	/^vmap ÎÔ "-d"*P$/;"	m
+\x16Î\x16Õ	contact.vim	/^vmap ÎÕ "*y$/;"	m
+\x16Î\x16×	contact.vim	/^vmap Î× "*d$/;"	m
+\x16Î\x16Ø	contact.vim	/^vmap ÎØ "*d$/;"	m
+\x16Îu	contact.vim	/^map! Îu <C-End>$/;"	m
+\x16Îu	contact.vim	/^nmap Îu <C-End>$/;"	m
+\x16Îu	contact.vim	/^vmap Îu <C-End>$/;"	m
+\x16Îw	contact.vim	/^map! Îw <C-Home>$/;"	m
+\x16Îw	contact.vim	/^nmap Îw <C-Home>$/;"	m
+\x16Îw	contact.vim	/^vmap Îw <C-Home>$/;"	m
+]%	contact.vim	/^nmap <silent> ]% <Plug>(MatchitNormalMultiForward)$/;"	m
+]%	contact.vim	/^omap <silent> ]% <Plug>(MatchitOperationMultiForward)$/;"	m
+]%	contact.vim	/^xmap <silent> ]% <Plug>(MatchitVisualMultiForward)$/;"	m
+_CONTACT_CSV_H_	contactCsv.h	/^#define _CONTACT_CSV_H_$/;"	d
+_CONTACT_MENUS_H_	contactMenus.h	/^#define _CONTACT_MENUS_H_$/;"	d
+a%	contact.vim	/^xmap a% <Plug>(MatchitVisualTextObject)$/;"	m
+addContact	contactCsv.c	/^int addContact( contactsType *headContact, contactsType *contact ){$/;"	f	typeref:typename:int
+addMenu	contactMenus.c	/^int addMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int
+address	contactCsv.h	/^	char address[ ADDRESS_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+address	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+all	makefile	/^all:$/;"	t
+ascending	contactCsv.h	/^	ascending, decending$/;"	e	enum:sortType
+boxType	contactMenus.h	/^typedef struct boxType {$/;"	s
+boxType	contactMenus.h	/^} boxType;$/;"	t	typeref:struct:boxType
+columnType	contactCsv.h	/^} columnType;$/;"	t	typeref:enum:sortColumnType
+contactsType	contactCsv.h	/^typedef struct contactsType {$/;"	s
+contactsType	contactCsv.h	/^} contactsType;$/;"	t	typeref:struct:contactsType
+decending	contactCsv.h	/^	ascending, decending$/;"	e	enum:sortType
+displayInfoType	contactMenus.h	/^typedef struct displayInfoType {$/;"	s
+displayInfoType	contactMenus.h	/^} displayInfoType;$/;"	t	typeref:struct:displayInfoType
+displayMenu	contactMenus.c	/^int displayMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int
+endX	contactMenus.h	/^	int endX;$/;"	m	struct:boxType	typeref:typename:int
+endY	contactMenus.h	/^	int endY;$/;"	m	struct:boxType	typeref:typename:int
+event	contactMenus.h	/^	MEVENT event;$/;"	m	struct:displayInfoType	typeref:typename:MEVENT
+exportContact	contactCsv.c	/^int exportContact( contactsType *headContact, char *fileName ){$/;"	f	typeref:typename:int
+exportMenu	contactMenus.c	/^int exportMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int
+firstName	contactCsv.h	/^	char firstName[ FIRST_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+firstName	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+g%	contact.vim	/^nmap <silent> g% <Plug>(MatchitNormalBackward)$/;"	m
+g%	contact.vim	/^omap <silent> g% <Plug>(MatchitOperationBackward)$/;"	m
+g%	contact.vim	/^xmap <silent> g% <Plug>(MatchitVisualBackward)$/;"	m
+gx	contact.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
+gx	contact.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
+importContact	contactCsv.c	/^int importContact( contactsType **headContact, char *fileName ){$/;"	f	typeref:typename:int
+inputChar	contactMenus.h	/^	char *inputChar;$/;"	m	struct:displayInfoType	typeref:typename:char *
+lastName	contactCsv.h	/^	char lastName[ LAST_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+lastName	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+main	contacts.c	/^int main( int argc, char **argv ){$/;"	f	typeref:typename:int
+maxX	contactMenus.h	/^	int maxX;$/;"	m	struct:displayInfoType	typeref:typename:int
+maxY	contactMenus.h	/^	int maxY;$/;"	m	struct:displayInfoType	typeref:typename:int
+middleName	contactCsv.h	/^	char middleName[ MIDDLE_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+middleName	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+mouseOver	contactMenus.c	/^int mouseOver( displayInfoType displayInfo, boxType box ){$/;"	f	typeref:typename:int
+nextContact	contactCsv.h	/^	struct contactsType *nextContact;$/;"	m	struct:contactsType	typeref:struct:contactsType *
+phoneNumber	contactCsv.h	/^	char phoneNumber[ PHONE_NUMBER_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+phoneNumber	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+prevContact	contactCsv.h	/^	struct contactsType *prevContact;$/;"	m	struct:contactsType	typeref:struct:contactsType *
+printAdd	contactMenus.c	/^int printAdd( int startY, int startX ){$/;"	f	typeref:typename:int
+printDisplay	contactMenus.c	/^int printDisplay( int startY, int startX ){$/;"	f	typeref:typename:int
+printExit	contactMenus.c	/^int printExit( int startY, int startX ){$/;"	f	typeref:typename:int
+printExport	contactMenus.c	/^int printExport( int startY, int startX ){$/;"	f	typeref:typename:int
+printRemove	contactMenus.c	/^int printRemove( int startY, int startX ){$/;"	f	typeref:typename:int
+removeContact	contactCsv.c	/^int removeContact( contactsType *headContact, contactsType *contact ){$/;"	f	typeref:typename:int
+removeMenu	contactMenus.c	/^int removeMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int
+s:cpo_save	contact.vim	/^let s:cpo_save=&cpo$/;"	v
+s:l	contact.vim	/^let s:l = 150 - ((14 * winheight(0) + 14) \/ 29)$/;"	v
+s:so_save	contact.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
+s:sx	contact.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
+s:wipebuf	contact.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
+selectedType	contactMenus.h	/^typedef enum selectedType {$/;"	g
+selectedType	contactMenus.h	/^} selectedType;$/;"	t	typeref:enum:selectedType
+sortColumnType	contactCsv.h	/^typedef enum sortColumnType {$/;"	g
+sortContact	contactCsv.c	/^int sortContact( contactsType **headContact, sortType sort, columnType column ){$/;"	f	typeref:typename:int
+sortType	contactCsv.h	/^typedef enum sortType {$/;"	g
+sortType	contactCsv.h	/^} sortType;$/;"	t	typeref:enum:sortType
+startX	contactMenus.h	/^	int startX;$/;"	m	struct:boxType	typeref:typename:int
+startY	contactMenus.h	/^	int startY;$/;"	m	struct:boxType	typeref:typename:int
+state	contactCsv.h	/^	char state[ STATE_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+state	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType
+window	contactMenus.h	/^	WINDOW *window;$/;"	m	struct:displayInfoType	typeref:typename:WINDOW *
+x	contactMenus.h	/^	int x;$/;"	m	struct:displayInfoType	typeref:typename:int
+y	contactMenus.h	/^	int y;$/;"	m	struct:displayInfoType	typeref:typename:int
+zipcode	contactCsv.h	/^	char zipcode[ ZIPCODE_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
+zipcode	contactCsv.h	/^	firstName, middleName, lastName, phoneNumber, address, state, zipcode$/;"	e	enum:sortColumnType

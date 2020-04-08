@@ -42,14 +42,50 @@ typedef enum sortColumnType {
 	firstName, middleName, lastName, phoneNumber, address, state, zipcode
 } columnType;
 
+/* 
+ * Name: importContact
+ * Desc: Imports contacts from a list into a head node. 
+ * Args: 
+ * 	contactsType *headContact - the head node of the contact list.
+ * 	char *fileName - the name of the file.
+ */
 int importContact( contactsType **headContact, char *fileName );
 
+/* 
+ * Name: exportContact
+ * Desc: Exports the contacts to a file. (in csv format) 
+ * Args: 
+ * 	contactsType *headContact - the head node of the contact list.
+ * 	char *fileName - the name of the file.
+ */
 int exportContact( contactsType *headContact, char *fileName );
 
+/* 
+ * Name: addContact
+ * Desc: Adds a contact to the list. 
+ * Args: 
+ * 	contactsType *headContact - the head node of the contact list.
+ * 	contactsType *contact - the contact being added.
+ */
 int addContact( contactsType *headContact, contactsType *contact );
 
+/* 
+ * Name: removeContact
+ * Desc: Removes a contact from the list. 
+ * Args: 
+ * 	contactsType *headContact - the head node of the contact list.
+ * 	contactsType *contact - the contact being removed.
+ */
 int removeContact( contactsType *headContact, contactsType *contact );
 
+/* 
+ * Name: sortContact
+ * Desc: Sorts the contacts by a specified column in a specified order.
+ * Args: 
+ * 	contactsType **headContact - the address of the head node.
+ * 	sortType sort - the method of sorting (ascending descending)
+ * 	columnType column - the column being sorted.
+ */
 int sortContact( contactsType **headContact, sortType sort, columnType column );
 
 #endif
