@@ -39,7 +39,13 @@ typedef enum sortType {
 } sortType;
 
 typedef enum sortColumnType {
-	firstName, middleName, lastName, phoneNumber, address, state, zipcode
+	firstName = 1 << 0,
+	middleName = 1 << 1,
+	lastName = 1 << 2,
+	phoneNumber = 1 << 3,
+	address = 1 << 4,
+	state = 1 << 5,
+	zipcode = 1 << 6
 } columnType;
 
 /* 
@@ -72,10 +78,10 @@ int addContact( contactsType *headContact, contactsType *contact );
  * Name: removeContact
  * Desc: Removes a contact from the list. 
  * Args: 
- * 	contactsType *headContact - the head node of the contact list.
+ * 	contactsType **headContact - the address head node of the contact list.
  * 	contactsType *contact - the contact being removed.
  */
-int removeContact( contactsType *headContact, contactsType *contact );
+int removeContact( contactsType **headContact, contactsType *contact );
 
 /* 
  * Name: sortContact
@@ -96,4 +102,24 @@ int sortContact( contactsType **headContact, sortType sort, columnType column );
  * 	columnType column - the column being used for the comparison.
  */
 int compareContact( contactsType firstContact, contactsType secondContact, columnType column );
+
+/* 
+ * Name: getContact
+ * Desc: Gets a contact. 
+ * Args:
+ * 	contactsType *headContact - the head node of the contact list.
+ * 	const char *columnName - the name of the column being obtiained.
+ * 	columnType column - the column being compared.
+ */
+contactsType *getContact( contactsType *headContact, const char *columnName, columnType column );
+
+/* 
+ * Name: strcmpContact
+ * Desc: Compares a contact to a string. 
+ * Args:
+ * 	contactsType contact - the contact being compared to.
+ * 	const char *columnName - the name of the column.
+ * 	columnType column - the column being compared.
+ */
+int strcmpContact( contactsType contact, const char *columnName, columnType column );
 #endif

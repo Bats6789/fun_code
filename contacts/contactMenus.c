@@ -197,52 +197,35 @@ int removeMenu( displayInfoType displayInfo, contactsType *headContact ){
 	int quit;
 	int chunk;
 	int index;
+	int notFound;
 	boxType exitBox;
-	boxType addBox;
+	boxType removeBox;
 	selectedType selected;
 	contactsType *currentContact;
-	columnType element;
+	char currentPhoneNumber[ PHONE_NUMBER_SIZE ];
 
-	addBox.startX = displayInfo.maxX / 2 - BOX_WIDTH;
-	addBox.startY = displayInfo.maxY / 2 + BOX_HEIGHT / 2 + 1;
-	addBox.endX = addBox.startX + BOX_WIDTH - 1;
-	addBox.endY = addBox.startY + BOX_HEIGHT - 1;
+	removeBox.startX = displayInfo.maxX / 2 - BOX_WIDTH;
+	removeBox.startY = displayInfo.maxY / 2 + BOX_HEIGHT / 2 + 1;
+	removeBox.endX = removeBox.startX + BOX_WIDTH - 1;
+	removeBox.endY = removeBox.startY + BOX_HEIGHT - 1;
 	exitBox.startX = displayInfo.maxX / 2;
 	exitBox.startY = displayInfo.maxY / 2 + BOX_HEIGHT / 2 + 1;
 	exitBox.endX = exitBox.startX + BOX_WIDTH - 1;
 	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
+	currentPhoneNumber[ 0 ] = '\0';
 	quit = 0;
 	index = 0;
-	element = firstName;
-	currentContact = malloc( sizeof( contactsType ));
-	if( currentContact == NULL ){
-		printw( "Failed to create Contact struct.\n" );
-		return( -1 );
-	}
-	currentContact->firstName[ 0 ] = '\0';
-	currentContact->middleName[ 0 ] = '\0';
-	currentContact->lastName[ 0 ] = '\0';
-	currentContact->phoneNumber[ 0 ] = '\0';
-	currentContact->address[ 0 ] = '\0';
-	currentContact->state[ 0 ] = '\0';
-	currentContact->zipcode[ 0 ] = '\0';
+	notFound = 0;
 
 	while( !quit ){
-		mvprintw( 4, displayInfo.maxX / 2 - 50, "FirstName: %s",
-				currentContact->firstName );
-		mvprintw( 6, displayInfo.maxX / 2 - 50, "MiddleName: %s",
-				currentContact->middleName );
-		mvprintw( 8, displayInfo.maxX / 2 - 50, "LastName: %s",
-				currentContact->lastName );
-		mvprintw( 10, displayInfo.maxX / 2 - 50, "PhoneNumber: %s",
-				currentContact->phoneNumber );
-		mvprintw( 12, displayInfo.maxX / 2 - 50, "Address: %s",
-				currentContact->address );
-		mvprintw( 14, displayInfo.maxX / 2 - 50, "State: %s",
-				currentContact->state );
-		mvprintw( 16, displayInfo.maxX / 2 - 50, "Zipcode: %s",
-				currentContact->zipcode );
-		printAdd( addBox.startY, addBox.startX );
+		mvprintw( 4, displayInfo.maxX / 2 - 50, "PhoneNumber: %s",
+				currentPhoneNumber );
+		if( notFound ){
+			attron( COLOR_PAIR( 1 ));
+			mvprintw( 5, displayInfo.maxX / 2 - 50, "Phone number not found" );
+			attroff( COLOR_PAIR( 1 ));
+		}
+		printRemove( removeBox.startY, removeBox.startX );
 		printExit( exitBox.startY, exitBox.startX );
 		refresh();
 		chunk = wgetch( displayInfo.window );
@@ -253,121 +236,38 @@ int removeMenu( displayInfoType displayInfo, contactsType *headContact ){
 			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
 			if( mouseOver( displayInfo, exitBox )){
 				quit = 1;
-			} else if( mouseOver( displayInfo, addBox )){
-				selected = Add;
-				if( currentContact->phoneNumber[ 0 ] != '\0' ){
-					addContact( headContact, currentContact );
-					if( currentContact == NULL ){
-						printw( "Failed to create Contact struct.\n" );
-						return( -1 );
+			} else if( mouseOver( displayInfo, removeBox )){
+				selected = Remove;
+				if( currentPhoneNumber[ 0 ] != '\0' ){
+					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
+					if( currentContact != NULL ){ 
+						notFound = !removeContact( &headContact, currentContact );
+					} else {
+						notFound = 1;
 					}
-					currentContact = malloc( sizeof( contactsType ));
-					currentContact->firstName[ 0 ] = '\0';
-					currentContact->middleName[ 0 ] = '\0';
-					currentContact->lastName[ 0 ] = '\0';
-					currentContact->phoneNumber[ 0 ] = '\0';
-					currentContact->address[ 0 ] = '\0';
-					currentContact->state[ 0 ] = '\0';
-					currentContact->zipcode[ 0 ] = '\0';
-					element = firstName;
+					currentPhoneNumber[ 0 ] = '\0';
 					index = 0;
 				}
 			}
 		} else {
-			switch( element ){
-				case firstName:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = middleName;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->firstName[ index ] = '\0';
-					} else if( index + 1 < FIRST_NAME_SIZE ){
-						currentContact->firstName[ index ] = chunk;
-						++index;
-						currentContact->firstName[ index ] = '\0';
+			if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
+				if( currentPhoneNumber[ 0 ] != '\0' ){
+					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
+					if( currentContact != NULL ){ 
+						notFound = !removeContact( &headContact, currentContact );
+					} else {
+						notFound = 1;
 					}
-					break;
-				case middleName:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = lastName;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->middleName[ index ] = '\0';
-					} else if( index + 1 < MIDDLE_NAME_SIZE ){
-						currentContact->middleName[ index ] = chunk;
-						++index;
-						currentContact->middleName[ index ] = '\0';
-					}
-					break;
-				case lastName:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = phoneNumber;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->lastName[ index ] = '\0';
-					} else if( index + 1 < LAST_NAME_SIZE ){
-						currentContact->lastName[ index ] = chunk;
-						++index;
-						currentContact->lastName[ index ] = '\0';
-					}
-					break;
-				case phoneNumber:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = address;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->phoneNumber[ index ] = '\0';
-					} else if( index + 1 < PHONE_NUMBER_SIZE ){
-						currentContact->phoneNumber[ index ] = chunk;
-						++index;
-						currentContact->phoneNumber[ index ] = '\0';
-					}
-					break;
-				case address:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = state;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->address[ index ] = '\0';
-					} else if( index + 1 < ADDRESS_SIZE ){
-						currentContact->address[ index ] = chunk;
-						++index;
-						currentContact->address[ index ] = '\0';
-					}
-					break;
-				case state:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = zipcode;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->state[ index ] = '\0';
-					} else if( index + 1 < STATE_SIZE ){
-						currentContact->state[ index ] = chunk;
-						++index;
-						currentContact->state[ index ] = '\0';
-					}
-					break;
-				case zipcode:
-					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-						index = 0;
-						element = firstName;
-					} else if( chunk == '\b' && index > 0 ){
-						--index;
-						currentContact->zipcode[ index ] = '\0';
-					} else if( index + 1 < ZIPCODE_SIZE ){
-						currentContact->zipcode[ index ] = chunk;
-						++index;
-						currentContact->zipcode[ index ] = '\0';
-					}
-					break;
-				default:
-					break;
+					currentPhoneNumber[ 0 ] = '\0';
+					index = 0;
+				}
+			} else if( chunk == '\b' && index > 0 ){
+				--index;
+				currentPhoneNumber[ index ] = '\0';
+			} else if( index + 1 < PHONE_NUMBER_SIZE ){
+				currentPhoneNumber[ index ] = chunk;
+				++index;
+				currentPhoneNumber[ index ] = '\0';
 			}
 		}
 	}

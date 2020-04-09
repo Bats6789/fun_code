@@ -9,7 +9,6 @@
 #include "contactCsv.h"
 
 int importContact( contactsType **headContact, char *fileName ){
-	printw( "importContact function entered" );
 	FILE *file;
 	char chunk;
 	int index;
@@ -134,7 +133,6 @@ int importContact( contactsType **headContact, char *fileName ){
 }
 
 int exportContact( contactsType *headContact, char *fileName ){
-	printw( "exportContact function entered" );
 	FILE *file;
 	contactsType *currentContact;
 
@@ -152,7 +150,6 @@ int exportContact( contactsType *headContact, char *fileName ){
 }
 
 int addContact( contactsType *headContact, contactsType *contact ){
-	printw( "addContact function entered" );
 	contactsType *currentContact;
 	int count;
 
@@ -184,9 +181,31 @@ int addContact( contactsType *headContact, contactsType *contact ){
 	return( count );
 }
 
-int removeContact( contactsType *headContact, contactsType *contact ){
-	printw( "removeContact function entered" );
-	return( 0 );
+int removeContact( contactsType **headContact, contactsType *contact ){
+	int found;
+	contactsType *currentContact;
+
+	found = 0;
+	currentContact = *headContact;
+
+	while( !found && currentContact != NULL ){
+		if( compareContact( *currentContact, *contact, phoneNumber ) == 0 ){
+			if( currentContact->prevContact != NULL ){
+				currentContact->prevContact->nextContact = currentContact->nextContact;
+			} else {
+				*headContact = currentContact->nextContact;
+			}
+			if( currentContact->nextContact != NULL ){
+				currentContact->nextContact->prevContact = currentContact->prevContact;
+			}
+			free( currentContact );
+			found = 1;
+		} else {
+			currentContact = currentContact->nextContact;
+		}
+	}
+
+	return( found );
 }
 
 int sortContact( contactsType **headContact, sortType sort, columnType column ){
@@ -194,7 +213,7 @@ int sortContact( contactsType **headContact, sortType sort, columnType column ){
 	return( 0 );
 }
 
-int compareContact( contactsType firstContact, contactsType secondContact, columnType column ) {
+int compareContact( contactsType firstContact, contactsType secondContact, columnType column ){
 	int results;
 
 	if( column == firstName ){
@@ -211,6 +230,46 @@ int compareContact( contactsType firstContact, contactsType secondContact, colum
 		results = strcmp( firstContact.state, secondContact.state );
 	} else if( column == zipcode ){
 		results = strcmp( firstContact.zipcode, secondContact.zipcode );
+	}
+
+	return( results );
+}
+
+contactsType *getContact( contactsType *headContact, const char *columnName, columnType column ){
+	contactsType *currentContact;
+	int found;
+
+	currentContact = headContact;
+	found = 0;
+
+	while( !found && currentContact != NULL ){
+		if( strcmpContact( *currentContact, columnName, column ) == 0 ){
+			found = 1;
+		} else {
+			currentContact = currentContact->nextContact;
+		}
+	}
+
+	return( currentContact );
+}
+
+int strcmpContact( contactsType contact, const char *columnName, columnType column ){
+	int results;
+
+	if( column == firstName ){
+		results = strcmp( contact.firstName, columnName );
+	} else if( column == middleName ){
+		results = strcmp( contact.middleName, columnName );
+	} else if( column == lastName ){
+		results = strcmp( contact.lastName, columnName );
+	} else if( column == phoneNumber ){
+		results = strcmp( contact.phoneNumber, columnName );
+	} else if( column == address ){
+		results = strcmp( contact.address, columnName );
+	} else if( column == state ){
+		results = strcmp( contact.state, columnName );
+	} else if( column == zipcode ){
+		results = strcmp( contact.zipcode, columnName );
 	}
 
 	return( results );
