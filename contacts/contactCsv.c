@@ -2,6 +2,7 @@
  * Name: contactCsv.c
  * Desc: The csv manager for contacts.
  * Auth: Blake Wingard
+ * Vers: 1.0.3 04/10/2020 CBW - import now returns the number of nodes.
  * Vers: 1.0.2 04/08/2020 CBW - Implemented remove. Added get, compare, and strcompare.
  * Vers: 1.0.1 03/28/2020 CBW - Implemented import, export, and add.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
@@ -13,6 +14,7 @@ int importContact( contactsType **headContact, char *fileName ){
 	FILE *file;
 	char chunk;
 	int index;
+	int count;
 	contactsType *currentContact;
 	columnType element;
 
@@ -32,6 +34,7 @@ int importContact( contactsType **headContact, char *fileName ){
 	*headContact = currentContact;
 	element = firstName;
 	index = 0;
+	count = 0;
 
 	while( fscanf( file, "%c", &chunk ) != EOF ){ 
 		switch( element ){
@@ -117,6 +120,7 @@ int importContact( contactsType **headContact, char *fileName ){
 					currentContact->nextContact->prevContact = currentContact;
 					currentContact = currentContact->nextContact;
 					currentContact->nextContact = NULL;
+					++count;
 				} else if( index + 1 < ZIPCODE_SIZE ){
 					currentContact->zipcode[ index ] = chunk;
 					++index;
@@ -130,7 +134,7 @@ int importContact( contactsType **headContact, char *fileName ){
 		free( currentContact );
 	}
 
-	return( 0 );
+	return( count );
 }
 
 int exportContact( contactsType *headContact, char *fileName ){
@@ -171,12 +175,11 @@ int addContact( contactsType *headContact, contactsType *contact ){
 	} else {
 		while( currentContact->nextContact != NULL ){
 			currentContact = currentContact->nextContact;
-			++count;
 		}
 		currentContact->nextContact = contact;
 		currentContact->nextContact->prevContact = currentContact;
 		currentContact->nextContact->nextContact = NULL;
-		++count;
+		count = 1;
 	}
 
 	return( count );

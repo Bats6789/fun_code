@@ -2,6 +2,7 @@
  * Name: contactMenus.c
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.3 04/10/2020 CBW - Implemented displayMenu.
  * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Implemented addMenu.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
@@ -10,7 +11,6 @@
 #include "contactMenus.h"
 
 int addMenu( displayInfoType displayInfo, contactsType *headContact ){
-	printw( "addMenu function entered" );
 	int quit;
 	int chunk;
 	int index;
@@ -73,7 +73,8 @@ int addMenu( displayInfoType displayInfo, contactsType *headContact ){
 			} else if( mouseOver( displayInfo, addBox )){
 				selected = Add;
 				if( currentContact->phoneNumber[ 0 ] != '\0' ){
-					addContact( headContact, currentContact );
+					*displayInfo.contactCount = *displayInfo.contactCount + 
+						addContact( headContact, currentContact );
 					if( currentContact == NULL ){
 						printw( "Failed to create Contact struct.\n" );
 						return( -1 );
@@ -256,6 +257,7 @@ int removeMenu( displayInfoType displayInfo, contactsType *headContact ){
 					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
 					if( currentContact != NULL ){ 
 						notFound = !removeContact( &headContact, currentContact );
+						*displayInfo.contactCount = *displayInfo.contactCount - 1;
 					} else {
 						notFound = 1;
 					}
@@ -278,17 +280,18 @@ int removeMenu( displayInfoType displayInfo, contactsType *headContact ){
 }
 
 int displayMenu( displayInfoType displayInfo, contactsType *headContact ){
-	printw( "displayMenu function entered" );
 	int quit;
 	int chunk;
 	int index;
 	int notFound;
+	int page;
+	int pageSize;
 	boxType exitBox;
 	boxType nextBox;
 	boxType prevBox;
 	selectedType selected;
 	contactsType *currentContact;
-	char currentPhoneNumber[ PHONE_NUMBER_SIZE ];
+	contactsType *loopContact;
 
 	nextBox.startX = displayInfo.maxX / 2 - BOX_WIDTH * 1.5;
 	nextBox.startY = displayInfo.maxY - BOX_HEIGHT - 5;
@@ -302,67 +305,57 @@ int displayMenu( displayInfoType displayInfo, contactsType *headContact ){
 	exitBox.startY = displayInfo.maxY - BOX_HEIGHT - 5;
 	exitBox.endX = exitBox.startX + BOX_WIDTH - 1;
 	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
-	currentPhoneNumber[ 0 ] = '\0';
 	quit = 0;
 	index = 0;
 	notFound = 0;
+	page = 0;
+	pageSize = ( displayInfo.maxY - BOX_HEIGHT - 8 ) / 8;
+	currentContact = headContact;
 
 	while( !quit ){
-		mvprintw( 4, displayInfo.maxX / 2 - 50, "PhoneNumber: %s",
-				currentPhoneNumber );
-		if( notFound ){
-			attron( COLOR_PAIR( 1 ));
-			mvprintw( 5, displayInfo.maxX / 2 - 50, "Phone number not found" );
-			attroff( COLOR_PAIR( 1 ));
-		}
 		printNext( nextBox.startY, nextBox.startX );
 		printPrev( prevBox.startY, prevBox.startX );
 		printExit( exitBox.startY, exitBox.startX );
+		loopContact = currentContact;
+		for( int i = 0; i < pageSize && ( page * pageSize + i < *displayInfo.contactCount ); ++i ){
+			mvprintw( i * 8 + 3, 5, "FirstName: %s", loopContact->firstName );
+			mvprintw( i * 8 + 4, 5, "MiddleName: %s", loopContact->middleName );
+			mvprintw( i * 8 + 5, 5, "LastName: %s", loopContact->lastName );
+			mvprintw( i * 8 + 6, 5, "PhoneNumber: %s", loopContact->phoneNumber );
+			mvprintw( i * 8 + 7, 5, "Address: %s", loopContact->address );
+			mvprintw( i * 8 + 8, 5, "State: %s", loopContact->state );
+			mvprintw( i * 8 + 9, 5, "Zipcode: %s", loopContact->zipcode );
+			loopContact = loopContact->nextContact;
+		}
 		refresh();
 		chunk = wgetch( displayInfo.window );
 		erase();
 
 		if( chunk == KEY_MOUSE ){
+			nc_getmouse( &(displayInfo.event));
 			request_mouse_pos();
 			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
-			if( mouseOver( displayInfo, exitBox )){
-				quit = 1;
-			} else if( mouseOver( displayInfo, nextBox )){
-				selected = Remove;
-				if( currentPhoneNumber[ 0 ] != '\0' ){
-					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
-					if( currentContact != NULL ){ 
-						notFound = !removeContact( &headContact, currentContact );
-					} else {
-						notFound = 1;
+			if( displayInfo.event.bstate & BUTTON1_PRESSED ){ 
+				if( mouseOver( displayInfo, exitBox )){
+					quit = 1;
+				} else if( mouseOver( displayInfo, nextBox )){
+					if(( page + 1 ) * pageSize < *displayInfo.contactCount ){
+						++page;
+						for( int i = 0; i < pageSize; ++i ){
+							currentContact = currentContact->nextContact;
+						}
 					}
-					currentPhoneNumber[ 0 ] = '\0';
-					index = 0;
-				}
-			}
-		} else {
-			if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
-				if( currentPhoneNumber[ 0 ] != '\0' ){
-					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
-					if( currentContact != NULL ){ 
-						notFound = !removeContact( &headContact, currentContact );
-					} else {
-						notFound = 1;
+				} else if( mouseOver( displayInfo, prevBox )){
+					if( page > 0 ){
+						--page;
+						for( int i = 0; i < pageSize; ++i ){
+							currentContact = currentContact->prevContact;
+						}
 					}
-					currentPhoneNumber[ 0 ] = '\0';
-					index = 0;
 				}
-			} else if( chunk == '\b' && index > 0 ){
-				--index;
-				currentPhoneNumber[ index ] = '\0';
-			} else if( index + 1 < PHONE_NUMBER_SIZE ){
-				currentPhoneNumber[ index ] = chunk;
-				++index;
-				currentPhoneNumber[ index ] = '\0';
 			}
 		}
 	}
-	free( currentContact );
 
 	return( 0 );
 }

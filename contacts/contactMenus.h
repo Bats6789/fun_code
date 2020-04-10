@@ -2,6 +2,7 @@
  * Name: contactMenus.h
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.3 04/10/2020 CBW - Implemented displayMenu.
  * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Moved print functions to here.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
@@ -24,6 +25,7 @@ typedef struct displayInfoType {
 	char *inputChar;
 	int x;
 	int y;
+	int *contactCount;
 	MEVENT event;
 	WINDOW *window;
 } displayInfoType;

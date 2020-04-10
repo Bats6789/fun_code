@@ -2,6 +2,7 @@
  * Name: contactCsv.h
  * Desc: The csv manager for contacts.
  * Auth: Blake Wingard
+ * Vers: 1.0.3 04/10/2020 CBW - import now returns the number of nodes.
  * Vers: 1.0.2 04/08/2020 CBW - Implemented remove. Added get, compare, and strcompare.
  * Vers: 1.0.1 03/28/2020 CBW - Changed structure elements to static arrays.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.

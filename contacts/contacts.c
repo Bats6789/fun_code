@@ -2,6 +2,7 @@
  * Name: contacts.c
  * Desc: A contact manager written in ncurses.
  * Auth: Blake Wingard
+ * Vers: 1.0.2 04/10/2020 CBW - Keeps track of the number of nodes.
  * Vers: 1.0.1 03/28/2020 CBW - Added other menu functions.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
  */
@@ -17,6 +18,7 @@
 int main( int argc, char **argv ){
 	int quit;
 	int chunk;
+	int contactCount;
 	contactsType *headContact;
 	displayInfoType displayInfo;
 	boxType addBox;
@@ -30,6 +32,8 @@ int main( int argc, char **argv ){
 	quit = 0;
 	chunk = '\0';
 	headContact = NULL;
+	contactCount = 0;
+	displayInfo.contactCount = &contactCount;
 
 	// start ncurses stuff
 	displayInfo.window = initscr();
@@ -72,7 +76,8 @@ int main( int argc, char **argv ){
 	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
 
 	// import list
-	if( importContact( &headContact, "contact.csv" ) < 0 ){
+	contactCount = importContact( &headContact, "contact.csv" );
+	if( contactCount < 0 ){
 		endwin();
 		printf( "ERROR: Failed to create HeadNode\n" );
 		return( -1 );
