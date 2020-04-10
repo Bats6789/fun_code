@@ -2,6 +2,7 @@
  * Name: contactMenus.c
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Implemented addMenu.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
  */
@@ -278,6 +279,91 @@ int removeMenu( displayInfoType displayInfo, contactsType *headContact ){
 
 int displayMenu( displayInfoType displayInfo, contactsType *headContact ){
 	printw( "displayMenu function entered" );
+	int quit;
+	int chunk;
+	int index;
+	int notFound;
+	boxType exitBox;
+	boxType nextBox;
+	boxType prevBox;
+	selectedType selected;
+	contactsType *currentContact;
+	char currentPhoneNumber[ PHONE_NUMBER_SIZE ];
+
+	nextBox.startX = displayInfo.maxX / 2 - BOX_WIDTH * 1.5;
+	nextBox.startY = displayInfo.maxY - BOX_HEIGHT - 5;
+	nextBox.endX = nextBox.startX + BOX_WIDTH - 1;
+	nextBox.endY = nextBox.startY + BOX_HEIGHT - 1;
+	prevBox.startX = displayInfo.maxX / 2 + BOX_WIDTH * 0.5;
+	prevBox.startY = displayInfo.maxY - BOX_HEIGHT - 5;
+	prevBox.endX = prevBox.startX + BOX_WIDTH - 1;
+	prevBox.endY = prevBox.startY + BOX_HEIGHT - 1;
+	exitBox.startX = displayInfo.maxX / 2 - BOX_WIDTH * 0.5;
+	exitBox.startY = displayInfo.maxY - BOX_HEIGHT - 5;
+	exitBox.endX = exitBox.startX + BOX_WIDTH - 1;
+	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
+	currentPhoneNumber[ 0 ] = '\0';
+	quit = 0;
+	index = 0;
+	notFound = 0;
+
+	while( !quit ){
+		mvprintw( 4, displayInfo.maxX / 2 - 50, "PhoneNumber: %s",
+				currentPhoneNumber );
+		if( notFound ){
+			attron( COLOR_PAIR( 1 ));
+			mvprintw( 5, displayInfo.maxX / 2 - 50, "Phone number not found" );
+			attroff( COLOR_PAIR( 1 ));
+		}
+		printNext( nextBox.startY, nextBox.startX );
+		printPrev( prevBox.startY, prevBox.startX );
+		printExit( exitBox.startY, exitBox.startX );
+		refresh();
+		chunk = wgetch( displayInfo.window );
+		erase();
+
+		if( chunk == KEY_MOUSE ){
+			request_mouse_pos();
+			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
+			if( mouseOver( displayInfo, exitBox )){
+				quit = 1;
+			} else if( mouseOver( displayInfo, nextBox )){
+				selected = Remove;
+				if( currentPhoneNumber[ 0 ] != '\0' ){
+					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
+					if( currentContact != NULL ){ 
+						notFound = !removeContact( &headContact, currentContact );
+					} else {
+						notFound = 1;
+					}
+					currentPhoneNumber[ 0 ] = '\0';
+					index = 0;
+				}
+			}
+		} else {
+			if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
+				if( currentPhoneNumber[ 0 ] != '\0' ){
+					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
+					if( currentContact != NULL ){ 
+						notFound = !removeContact( &headContact, currentContact );
+					} else {
+						notFound = 1;
+					}
+					currentPhoneNumber[ 0 ] = '\0';
+					index = 0;
+				}
+			} else if( chunk == '\b' && index > 0 ){
+				--index;
+				currentPhoneNumber[ index ] = '\0';
+			} else if( index + 1 < PHONE_NUMBER_SIZE ){
+				currentPhoneNumber[ index ] = chunk;
+				++index;
+				currentPhoneNumber[ index ] = '\0';
+			}
+		}
+	}
+	free( currentContact );
+
 	return( 0 );
 }
 
@@ -327,6 +413,24 @@ int printExit( int startY, int startX ){
 	mvprintw( startY + 0, startX, "+------------------+" );
 	mvprintw( startY + 1, startX, "|                  |" );
 	mvprintw( startY + 2, startX, "|       EXIT       |" );
+	mvprintw( startY + 3, startX, "|                  |" );
+	mvprintw( startY + 4, startX, "+------------------+" );
+	return( 0 );
+}
+
+int printNext( int startY, int startX ){
+	mvprintw( startY + 0, startX, "+------------------+" );
+	mvprintw( startY + 1, startX, "|                  |" );
+	mvprintw( startY + 2, startX, "|       NEXT       |" );
+	mvprintw( startY + 3, startX, "|                  |" );
+	mvprintw( startY + 4, startX, "+------------------+" );
+	return( 0 );
+}
+
+int printPrev( int startY, int startX ){
+	mvprintw( startY + 0, startX, "+------------------+" );
+	mvprintw( startY + 1, startX, "|                  |" );
+	mvprintw( startY + 2, startX, "|       PREV       |" );
 	mvprintw( startY + 3, startX, "|                  |" );
 	mvprintw( startY + 4, startX, "+------------------+" );
 	return( 0 );

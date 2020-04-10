@@ -2,6 +2,7 @@
  * Name: contactMenus.h
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Moved print functions to here.
  * Vers: 1.0.0 02/13/2020 CBW - Original code.
  */
@@ -131,11 +132,28 @@ int printExit( int startY, int startX );
 /*
  * Name: mouseOver
  * Auth Blake Wingard
- * Desc: prints the add button
+ * Desc: Determines if the mouse is over a region.
  * Args:
  * 	displayInfoType displayInfo - the info of the current display
  * 	boxType box - box info
  */
 int mouseOver( displayInfoType displayInfo, boxType box );
 
+/* 
+ * Name: printPrev
+ * Desc: Prints the prev button. 
+ * Args: 
+ * 	int startY - the first Y value
+ * 	int startX - the first X value
+ */
+int printPrev( int startY, int startX );
+
+/* 
+ * Name: printNext
+ * Desc: Prints the next button. 
+ * Args: 
+ * 	int startY - the first Y value
+ * 	int startX - the first X value
+ */
+int printNext( int startY, int startX );
 #endif
