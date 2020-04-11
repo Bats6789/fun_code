@@ -2,6 +2,7 @@
  * Name: contactMenus.h
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.4 04/10/2020 CBW - Implemented exportMenu.
  * Vers: 1.0.3 04/10/2020 CBW - Implemented displayMenu.
  * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Moved print functions to here.
@@ -20,8 +21,8 @@
 #define BOX_HEIGHT 5
 
 typedef struct displayInfoType {
-	int maxX;
-	int maxY;
+	int maxX; // max screen X size
+	int maxY; // max screen Y size
 	char *inputChar;
 	int x;
 	int y;
@@ -158,4 +159,14 @@ int printPrev( int startY, int startX );
  * 	int startX - the first X value
  */
 int printNext( int startY, int startX );
+
+/* 
+ * Name: printExport
+ * Desc: Prints the next button.  
+ * Args: 
+ * 	int startY - the first Y value
+ * 	int startX - the first X value
+ */
+int printExport( int startY, int startX );
+
 #endif

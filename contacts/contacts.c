@@ -191,7 +191,7 @@ int main( int argc, char **argv ){
 	}
 
 	// export list
-	exportContact( headContact, "contact.csv" );
+	exportContacts( headContact, "contact.csv" );
 	refresh();
 
 	endwin();

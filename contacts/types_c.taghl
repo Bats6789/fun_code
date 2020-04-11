@@ -1,0 +1,8 @@
+syn keyword CTagsMember event nextContact prevContact y maxY maxX startY inputChar endX window contactCount endY x startX
+syn keyword CTagsEnumeratorName sortColumnType
+syn keyword CTagsEnumerationValue state Add Remove Export ascending None firstName middleName zipcode decending Exit address lastName phoneNumber
+syn keyword CTagsFunction exportMenu addContact mouseOver printAdd printRemove printExport sortContact exportContacts addMenu displayMenu printPrev removeContact strcmpContact compareContact exportContact main printExit removeMenu importContact printNext getContact printDisplay
+syn keyword CTagsType sortType displayInfoType contactsType columnType boxType selectedType
+syn keyword CTagsDefinedName BOX_HEIGHT LAST_NAME_SIZE STATE_SIZE PHONE_NUMBER_SIZE FIRST_NAME_SIZE NO_FILE ZIPCODE_SIZE BOX_WIDTH _CONTACT_CSV_H_ ADDRESS_SIZE MIDDLE_NAME_SIZE _CONTACT_MENUS_H_
+
+syn match CTagsEnumerationValue /\<Display\>/

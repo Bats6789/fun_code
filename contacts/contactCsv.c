@@ -2,6 +2,7 @@
  * Name: contactCsv.c
  * Desc: The csv manager for contacts.
  * Auth: Blake Wingard
+ * Vers: 1.0.4 04/10/2020 CBW - Implemented exportContact (singular).
  * Vers: 1.0.3 04/10/2020 CBW - import now returns the number of nodes.
  * Vers: 1.0.2 04/08/2020 CBW - Implemented remove. Added get, compare, and strcompare.
  * Vers: 1.0.1 03/28/2020 CBW - Implemented import, export, and add.
@@ -10,7 +11,7 @@
 
 #include "contactCsv.h"
 
-int importContact( contactsType **headContact, char *fileName ){
+int importContact( contactsType **headContact, const char *fileName ){
 	FILE *file;
 	char chunk;
 	int index;
@@ -137,7 +138,7 @@ int importContact( contactsType **headContact, char *fileName ){
 	return( count );
 }
 
-int exportContact( contactsType *headContact, char *fileName ){
+int exportContacts( contactsType *headContact, char *fileName ){
 	FILE *file;
 	contactsType *currentContact;
 
@@ -214,6 +215,9 @@ int removeContact( contactsType **headContact, contactsType *contact ){
 
 int sortContact( contactsType **headContact, sortType sort, columnType column ){
 	printw( "sortContact function entered" );
+	headContact = NULL;
+	sort = ascending;
+	column = firstName;
 	return( 0 );
 }
 
@@ -277,4 +281,25 @@ int strcmpContact( contactsType contact, const char *columnName, columnType colu
 	}
 
 	return( results );
+}
+
+int exportContact( contactsType contact, const char *filename ) {
+	FILE *file;
+
+	file = fopen( filename, "w" );
+	if( file == NULL ){
+		return( NO_FILE );
+	}
+
+	fprintf( file, "%s\n", contact.firstName );
+	fprintf( file, "%s\n", contact.middleName );
+	fprintf( file, "%s\n", contact.lastName );
+	fprintf( file, "%s\n", contact.phoneNumber );
+	fprintf( file, "%s\n", contact.address );
+	fprintf( file, "%s\n", contact.state );
+	fprintf( file, "%s\n", contact.zipcode );
+
+	fclose( file );
+
+	return( 0 );
 }

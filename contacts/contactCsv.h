@@ -2,6 +2,7 @@
  * Name: contactCsv.h
  * Desc: The csv manager for contacts.
  * Auth: Blake Wingard
+ * Vers: 1.0.4 04/10/2020 CBW - Implemented exportContact (singular).
  * Vers: 1.0.3 04/10/2020 CBW - import now returns the number of nodes.
  * Vers: 1.0.2 04/08/2020 CBW - Implemented remove. Added get, compare, and strcompare.
  * Vers: 1.0.1 03/28/2020 CBW - Changed structure elements to static arrays.
@@ -23,6 +24,9 @@
 #define ADDRESS_SIZE 100
 #define STATE_SIZE 100
 #define ZIPCODE_SIZE 20
+
+// error code
+#define NO_FILE -1
 
 typedef struct contactsType {
 	char firstName[ FIRST_NAME_SIZE ];
@@ -54,9 +58,10 @@ typedef enum sortColumnType {
  * Name: importContact
  * Desc: Imports contacts from a list into a head node. 
  * Args: 
- * 	<+args+>
+ * 	contactsType **headContact - the address of the head contact.
+ * 	char *fileName - the name of the file.
  */
-int importContact( contactsType **headContact, char *fileName );
+int importContact( contactsType **headContact, const char *fileName );
 
 /* 
  * Name: exportContact
@@ -65,7 +70,7 @@ int importContact( contactsType **headContact, char *fileName );
  * 	contactsType *headContact - the head node of the contact list.
  * 	char *fileName - the name of the file.
  */
-int exportContact( contactsType *headContact, char *fileName );
+int exportContacts( contactsType *headContact, char *fileName );
 
 /* 
  * Name: addContact
@@ -124,4 +129,14 @@ contactsType *getContact( contactsType *headContact, const char *columnName, col
  * 	columnType column - the column being compared.
  */
 int strcmpContact( contactsType contact, const char *columnName, columnType column );
+
+/* 
+ * Name: exportSingleContact
+ * Desc: Exports a single contact to a file. 
+ * Args:
+ * 	contactsType contact - the contact to be exported.
+ * 	const char *filename - the name of the file.
+ */
+int exportContact( contactsType contact, const char *filename );
+
 #endif

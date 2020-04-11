@@ -36,6 +36,7 @@ Export	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:sel
 FIRST_NAME_SIZE	contactCsv.h	/^#define FIRST_NAME_SIZE /;"	d
 LAST_NAME_SIZE	contactCsv.h	/^#define LAST_NAME_SIZE /;"	d
 MIDDLE_NAME_SIZE	contactCsv.h	/^#define MIDDLE_NAME_SIZE /;"	d
+NO_FILE	contactCsv.h	/^#define NO_FILE /;"	d
 None	contactMenus.h	/^	None, Add, Remove, Display, Export, Exit$/;"	e	enum:selectedType
 PHONE_NUMBER_SIZE	contactCsv.h	/^#define PHONE_NUMBER_SIZE /;"	d
 Q	contact.vim	/^map Q gq$/;"	m
@@ -76,6 +77,7 @@ boxType	contactMenus.h	/^typedef struct boxType {$/;"	s
 boxType	contactMenus.h	/^} boxType;$/;"	t	typeref:struct:boxType
 columnType	contactCsv.h	/^} columnType;$/;"	t	typeref:enum:sortColumnType
 compareContact	contactCsv.c	/^int compareContact( contactsType firstContact, contactsType secondContact, columnType column ){$/;"	f	typeref:typename:int
+contactCount	contactMenus.h	/^	int *contactCount;$/;"	m	struct:displayInfoType	typeref:typename:int *
 contactsType	contactCsv.h	/^typedef struct contactsType {$/;"	s
 contactsType	contactCsv.h	/^} contactsType;$/;"	t	typeref:struct:contactsType
 decending	contactCsv.h	/^	ascending, decending$/;"	e	enum:sortType
@@ -85,7 +87,8 @@ displayMenu	contactMenus.c	/^int displayMenu( displayInfoType displayInfo, conta
 endX	contactMenus.h	/^	int endX;$/;"	m	struct:boxType	typeref:typename:int
 endY	contactMenus.h	/^	int endY;$/;"	m	struct:boxType	typeref:typename:int
 event	contactMenus.h	/^	MEVENT event;$/;"	m	struct:displayInfoType	typeref:typename:MEVENT
-exportContact	contactCsv.c	/^int exportContact( contactsType *headContact, char *fileName ){$/;"	f	typeref:typename:int
+exportContact	contactCsv.c	/^int exportContact( contactsType contact, const char *filename ) {$/;"	f	typeref:typename:int
+exportContacts	contactCsv.c	/^int exportContacts( contactsType *headContact, char *fileName ){$/;"	f	typeref:typename:int
 exportMenu	contactMenus.c	/^int exportMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int
 firstName	contactCsv.h	/^	char firstName[ FIRST_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
 firstName	contactCsv.h	/^	firstName = 1 << 0,$/;"	e	enum:sortColumnType
@@ -95,13 +98,13 @@ g%	contact.vim	/^xmap <silent> g% <Plug>(MatchitVisualBackward)$/;"	m
 getContact	contactCsv.c	/^contactsType *getContact( contactsType *headContact, const char *columnName, columnType column )/;"	f	typeref:typename:contactsType *
 gx	contact.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
 gx	contact.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
-importContact	contactCsv.c	/^int importContact( contactsType **headContact, char *fileName ){$/;"	f	typeref:typename:int
+importContact	contactCsv.c	/^int importContact( contactsType **headContact, const char *fileName ){$/;"	f	typeref:typename:int
 inputChar	contactMenus.h	/^	char *inputChar;$/;"	m	struct:displayInfoType	typeref:typename:char *
 lastName	contactCsv.h	/^	char lastName[ LAST_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
 lastName	contactCsv.h	/^	lastName = 1 << 2,$/;"	e	enum:sortColumnType
 main	contacts.c	/^int main( int argc, char **argv ){$/;"	f	typeref:typename:int
-maxX	contactMenus.h	/^	int maxX;$/;"	m	struct:displayInfoType	typeref:typename:int
-maxY	contactMenus.h	/^	int maxY;$/;"	m	struct:displayInfoType	typeref:typename:int
+maxX	contactMenus.h	/^	int maxX; \/\/ max screen X size$/;"	m	struct:displayInfoType	typeref:typename:int
+maxY	contactMenus.h	/^	int maxY; \/\/ max screen Y size$/;"	m	struct:displayInfoType	typeref:typename:int
 middleName	contactCsv.h	/^	char middleName[ MIDDLE_NAME_SIZE ];$/;"	m	struct:contactsType	typeref:typename:char[]
 middleName	contactCsv.h	/^	middleName = 1 << 1,$/;"	e	enum:sortColumnType
 mouseOver	contactMenus.c	/^int mouseOver( displayInfoType displayInfo, boxType box ){$/;"	f	typeref:typename:int
@@ -113,6 +116,8 @@ printAdd	contactMenus.c	/^int printAdd( int startY, int startX ){$/;"	f	typeref:
 printDisplay	contactMenus.c	/^int printDisplay( int startY, int startX ){$/;"	f	typeref:typename:int
 printExit	contactMenus.c	/^int printExit( int startY, int startX ){$/;"	f	typeref:typename:int
 printExport	contactMenus.c	/^int printExport( int startY, int startX ){$/;"	f	typeref:typename:int
+printNext	contactMenus.c	/^int printNext( int startY, int startX ){$/;"	f	typeref:typename:int
+printPrev	contactMenus.c	/^int printPrev( int startY, int startX ){$/;"	f	typeref:typename:int
 printRemove	contactMenus.c	/^int printRemove( int startY, int startX ){$/;"	f	typeref:typename:int
 removeContact	contactCsv.c	/^int removeContact( contactsType **headContact, contactsType *contact ){$/;"	f	typeref:typename:int
 removeMenu	contactMenus.c	/^int removeMenu( displayInfoType displayInfo, contactsType *headContact ){$/;"	f	typeref:typename:int

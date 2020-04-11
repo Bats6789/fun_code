@@ -2,6 +2,7 @@
  * Name: contactMenus.c
  * Desc: Contact's display menus.
  * Auth: Blake Wingard
+ * Vers: 1.0.4 04/10/2020 CBW - Implemented exportMenu.
  * Vers: 1.0.3 04/10/2020 CBW - Implemented displayMenu.
  * Vers: 1.0.2 04/08/2020 CBW - Implemeted removeMenu.
  * Vers: 1.0.1 03/28/2020 CBW - Implemented addMenu.
@@ -362,6 +363,109 @@ int displayMenu( displayInfoType displayInfo, contactsType *headContact ){
 
 int exportMenu( displayInfoType displayInfo, contactsType *headContact ){
 	printw( "exportMenu function entered" );
+	int quit;
+	int chunk;
+	int phoneIndex;
+	int fileIndex;
+	int notFound;
+	int step;
+	int fileFound;
+	boxType exitBox;
+	boxType exportBox;
+	selectedType selected;
+	contactsType *currentContact;
+	char currentPhoneNumber[ PHONE_NUMBER_SIZE ];
+	char filename[ 50 ];
+
+	exportBox.startX = displayInfo.maxX / 2 - BOX_WIDTH;
+	exportBox.startY = displayInfo.maxY / 2 + BOX_HEIGHT / 2 + 1;
+	exportBox.endX = exportBox.startX + BOX_WIDTH - 1;
+	exportBox.endY = exportBox.startY + BOX_HEIGHT - 1;
+	exitBox.startX = displayInfo.maxX / 2;
+	exitBox.startY = displayInfo.maxY / 2 + BOX_HEIGHT / 2 + 1;
+	exitBox.endX = exitBox.startX + BOX_WIDTH - 1;
+	exitBox.endY = exitBox.startY + BOX_HEIGHT - 1;
+	currentPhoneNumber[ 0 ] = '\0';
+	filename[ 0 ] = '\0';
+	quit = 0;
+	phoneIndex = 0;
+	fileIndex = 0;
+	notFound = 0;
+	step = 0;
+	fileFound = 0;
+
+	while( !quit ){
+		mvprintw( 4, displayInfo.maxX / 2 - 50, "PhoneNumber: %s", currentPhoneNumber );
+		mvprintw( 5, displayInfo.maxX / 2 - 50, "filename: %s", filename );
+		if( notFound ){
+			attron( COLOR_PAIR( 1 ));
+			mvprintw( 6, displayInfo.maxX / 2 - 50, "Phone number not found" );
+			attroff( COLOR_PAIR( 1 ));
+		}
+		if( fileFound == NO_FILE ){
+			attron( COLOR_PAIR( 1 ));
+			mvprintw( 6, displayInfo.maxX / 2 - 50, "File %s was unable to open", filename );
+			attroff( COLOR_PAIR( 1 ));
+		}
+		printExport( exportBox.startY, exportBox.startX );
+		printExit( exitBox.startY, exitBox.startX );
+		refresh();
+		chunk = wgetch( displayInfo.window );
+		erase();
+
+		if( chunk == KEY_MOUSE ){
+			request_mouse_pos();
+			wmouse_position( displayInfo.window, &(displayInfo.y), &(displayInfo.x));
+			if( mouseOver( displayInfo, exitBox )){
+				quit = 1;
+			} else if( mouseOver( displayInfo, exportBox )){
+				selected = Remove;
+				if( filename[ 0 ] != '\0' && currentPhoneNumber[ 0 ] != '\0' ){
+					currentContact = getContact( headContact, currentPhoneNumber, phoneNumber );
+					if( currentContact != NULL ){ 
+						fileFound = exportContact( *currentContact, filename );
+						if( fileFound == 0 ){
+							phoneIndex = 0;
+							currentPhoneNumber[ 0 ] = '\0';
+							fileIndex = 0;
+							filename[ 0 ] = '\0';
+						}
+						notFound = 0;
+					} else {
+						notFound = 1;
+					}
+				}
+			}
+		} else {
+			switch( step ){
+				case 0:
+					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
+						step = 1;
+					} else if( chunk == '\b' && phoneIndex > 0 ){
+						--phoneIndex;
+						currentPhoneNumber[ phoneIndex ] = '\0';
+					} else if( phoneIndex + 1 < PHONE_NUMBER_SIZE ){
+						currentPhoneNumber[ phoneIndex ] = chunk;
+						++phoneIndex;
+						currentPhoneNumber[ phoneIndex ] = '\0';
+					}
+					break;
+				case 1:
+					if( chunk == '\n' || chunk == KEY_ENTER || chunk == 13 ){
+						step = 0;
+					} else if( chunk == '\b' && fileIndex > 0 ){
+						--fileIndex;
+						filename[ fileIndex ] = '\0';
+					} else if( fileIndex + 1 < 50 ){
+						filename[ fileIndex ] = chunk;
+						++fileIndex;
+						filename[ fileIndex ] = '\0';
+					}
+					break;
+			}
+		}
+	}
+
 	return( 0 );
 }
 
@@ -414,7 +518,7 @@ int printExit( int startY, int startX ){
 int printNext( int startY, int startX ){
 	mvprintw( startY + 0, startX, "+------------------+" );
 	mvprintw( startY + 1, startX, "|                  |" );
-	mvprintw( startY + 2, startX, "|       NEXT       |" );
+	mvprintw( startY + 2, startX, "|       next       |" );
 	mvprintw( startY + 3, startX, "|                  |" );
 	mvprintw( startY + 4, startX, "+------------------+" );
 	return( 0 );
