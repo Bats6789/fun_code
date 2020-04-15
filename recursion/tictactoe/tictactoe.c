@@ -301,24 +301,37 @@ int printBoard( int board[ 9 ] ) {
 
         printf( "\n\n" );
         for( i = 0; i < 9; ++i ){
-                switch( board[ i ] ){
-                        case O:
-                                piece = 'O';
-                                break;
-                        case X:
-                                piece = 'X';
-                                break;
-                        case EMPTY:
-                                piece = i + '1';
-                                break;
-                }
                 if( i % 3 == 0 ){
                         printf( "   " );
                 }
-                putchar( piece );
+                switch( board[ i ] ){
+                        case O:
+                                putchar( 'O' );
+                                break;
+                        case X:
+                                putchar( 'X' );
+                                break;
+                        case EMPTY:
+                                putchar( ' ' );
+                                break;
+                }
                 if( i == 2 || i == 5 ){
-                        printf( "\n   -----\n" );
+                        printf( "     " );
+                        for( int j = 0; j < 3; ++j ){
+                                putchar( '1' + ( i - 2 + j ) );
+                                if( j != 2 ){
+                                        putchar( '|' );
+                                }
+                        }
+                        printf( "\n   -----     -----\n" );
                 } else if( i != 8 ){
+                        putchar( '|' );
+                }
+        }
+        printf( "     " );
+        for( int j = 0; j < 3; ++j ){
+                putchar( '1' + ( i - 3 + j ) );
+                if( j != 2 ){
                         putchar( '|' );
                 }
         }
@@ -409,21 +422,21 @@ int singlePlayerGame( int board[ 9 ], int playerOnePiece, int playerTwoPiece, in
                         }
                 }
                 results = boardResults( board, playerOnePiece );
-                        if( results == 1 ){
-                                printf( "Game over.\n" );
-                                printf( "AI wins.\n" );
-                                results = 1;
-                                return( 0 );
-                        } else if( results == -1 ){
-                                printf( "Game over.\n" );
-                                printf( "Player wins.\n" );
-                                results = 2;
-                                return( 0 );
-                        } else if( results == 0 ){
-                                printf( "Game over.\n" );
-                                printf( "It's a tie.\n" );
-                                results = 0;
-                        }
+                if( results == 1 ){
+                        printf( "Game over.\n" );
+                        printf( "AI wins.\n" );
+                        results = 1;
+                        return( 0 );
+                } else if( results == -1 ){
+                        printf( "Game over.\n" );
+                        printf( "Player wins.\n" );
+                        results = 2;
+                        return( 0 );
+                } else if( results == 0 ){
+                        printf( "Game over.\n" );
+                        printf( "It's a tie.\n" );
+                        results = 0;
+                }
         }
         return( results );
 }
@@ -475,21 +488,21 @@ int multiPlayerGame( int board[ 9 ] ) {
                         }
                 }
                 results = boardResults( board, X );
-                        if( results == 1 ){
-                                printf( "Game over.\n" );
-                                printf( "Player 1 wins.\n" );
-                                results = 1;
-                                return( 0 );
-                        } else if( results == -1 ){
-                                printf( "Game over.\n" );
-                                printf( "Player 2 wins.\n" );
-                                results = 2;
-                                return( 0 );
-                        } else if( results == 0 ){
-                                printf( "Game over.\n" );
-                                printf( "It's a tie.\n" );
-                                results = 0;
-                        }
+                if( results == 1 ){
+                        printf( "Game over.\n" );
+                        printf( "Player 1 wins.\n" );
+                        results = 1;
+                        return( 0 );
+                } else if( results == -1 ){
+                        printf( "Game over.\n" );
+                        printf( "Player 2 wins.\n" );
+                        results = 2;
+                        return( 0 );
+                } else if( results == 0 ){
+                        printf( "Game over.\n" );
+                        printf( "It's a tie.\n" );
+                        results = 0;
+                }
         }
         return( results );
 }
