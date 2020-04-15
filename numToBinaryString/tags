@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+__anon3c4cf7b0010a	doubleToBinaryString.c	/^typedef union {$/;"	kind:u	file:
+__anon3c4cf7b0010a::num	doubleToBinaryString.c	/^        double num;$/;"	kind:m	union:__anon3c4cf7b0010a	typeref:typename:double	file:	access:public
+__anon3c4cf7b0010a::numData	doubleToBinaryString.c	/^        unsigned numData[ 8 ];$/;"	kind:m	union:__anon3c4cf7b0010a	typeref:typename:unsigned[8]	file:	access:public
+doubleToBinaryString	doubleToBinaryString.c	/^char *doubleToBinaryString( double num ) {$/;"	kind:f	typeref:typename:char *	signature:(double num)
+doubleToBinaryString	doubleToBinaryString.c	/^char *doubleToBinaryString( double num );$/;"	kind:p	typeref:typename:char *	file:	signature:(double num)
+main	doubleToBinaryString.c	/^int main ( int argc, char **argv ){$/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+num	doubleToBinaryString.c	/^        double num;$/;"	kind:m	union:__anon3c4cf7b0010a	typeref:typename:double	file:	access:public
+numData	doubleToBinaryString.c	/^        unsigned numData[ 8 ];$/;"	kind:m	union:__anon3c4cf7b0010a	typeref:typename:unsigned[8]	file:	access:public
+numToData	doubleToBinaryString.c	/^} numToData;$/;"	kind:t	typeref:union:__anon3c4cf7b0010a	file:

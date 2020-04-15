@@ -1,0 +1,10 @@
+syn keyword CTagsFunction doubleToBinaryString main
+
+" Matches for file doubleToBinaryString.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "doubleToBinaryString.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsMember num numData
+	syn keyword CTagsUnion __anon3c4cf7b0010a
+	syn keyword CTagsFunction doubleToBinaryString
+	syn keyword CTagsType numToData
+	
+endif
