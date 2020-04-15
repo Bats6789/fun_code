@@ -1,0 +1,35 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+DEBUG	tictactoe.c	/^#define DEBUG /;"	kind:d	file:
+EMPTY	tictactoe.c	/^#define EMPTY /;"	kind:d	file:
+MULTI_PLAYER	tictactoe.c	/^#define MULTI_PLAYER /;"	kind:d	file:
+NO_MODE_SELCTED	tictactoe.c	/^#define NO_MODE_SELCTED /;"	kind:d	file:
+O	tictactoe.c	/^#define O /;"	kind:d	file:
+SINGLE_PLAYER	tictactoe.c	/^#define SINGLE_PLAYER /;"	kind:d	file:
+X	tictactoe.c	/^#define X /;"	kind:d	file:
+__anon35e701160103	tictactoe.c	/^typedef enum{$/;"	kind:g	file:
+boardResults	tictactoe.c	/^int boardResults( int board[ 9 ], int piece ) {$/;"	kind:f	typeref:typename:int	signature:(int board[9],int piece)
+boardResults	tictactoe.c	/^int boardResults( int board[ 9 ], int piece );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9],int piece)
+difficultyType	tictactoe.c	/^} difficultyType;$/;"	kind:t	typeref:enum:__anon35e701160103	file:
+easy	tictactoe.c	/^        easy = 3,$/;"	kind:e	enum:__anon35e701160103	file:	access:public
+getFreeSpaces	tictactoe.c	/^int getFreeSpaces( int board[ 9 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9])
+hard	tictactoe.c	/^        hard = 9$/;"	kind:e	enum:__anon35e701160103	file:	access:public
+main	tictactoe.c	/^int main ( int argc, char **argv ) { $/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+medium	tictactoe.c	/^        medium = 6,$/;"	kind:e	enum:__anon35e701160103	file:	access:public
+multiPlayerGame	tictactoe.c	/^int multiPlayerGame( int board[ 9 ] ) {$/;"	kind:f	typeref:typename:int	signature:(int board[9])
+multiPlayerGame	tictactoe.c	/^int multiPlayerGame( int board[ 9 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9])
+nextMove	tictactoe.c	/^int nextMove( int board[ 9 ], int level, int piece, int isAITurn, difficultyType difficulty ) {$/;"	kind:f	typeref:typename:int	signature:(int board[9],int level,int piece,int isAITurn,difficultyType difficulty)
+nextMove	tictactoe.c	/^int nextMove( int board[ 9 ], int level, int piece, int isAITurn, difficultyType difficulty );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9],int level,int piece,int isAITurn,difficultyType difficulty)
+printBoard	tictactoe.c	/^int printBoard( int board[ 9 ] ) {$/;"	kind:f	typeref:typename:int	signature:(int board[9])
+printBoard	tictactoe.c	/^int printBoard( int board[ 9 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9])
+setBoard	tictactoe.c	/^int setBoard( int board[ 9 ] ) {$/;"	kind:f	typeref:typename:int	signature:(int board[9])
+setBoard	tictactoe.c	/^int setBoard( int board[ 9 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(int board[9])
+singlePlayerGame	tictactoe.c	/^int singlePlayerGame( int board[ 9 ], int playerOnePiece, int playerTwoPiece, int playerTurn, di/;"	kind:f	typeref:typename:int	signature:(int board[9],int playerOnePiece,int playerTwoPiece,int playerTurn,difficultyType difficulty)
+singlePlayerGame	tictactoe.c	/^int singlePlayerGame( int board[ 9 ], int playerOnePiece, int playerTwoPiece, int playerTurn, di/;"	kind:p	typeref:typename:int	file:	signature:(int board[9],int playerOnePiece,int playerTwoPiece,int playerTurn,difficultyType difficulty)

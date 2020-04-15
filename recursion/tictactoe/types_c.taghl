@@ -1,0 +1,11 @@
+syn keyword CTagsFunction multiPlayerGame setBoard nextMove printBoard singlePlayerGame boardResults main
+
+" Matches for file tictactoe.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "tictactoe.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsEnumeratorName __anon35e701160103
+	syn keyword CTagsEnumerationValue easy hard medium
+	syn keyword CTagsFunction multiPlayerGame setBoard getFreeSpaces nextMove printBoard boardResults singlePlayerGame
+	syn keyword CTagsType difficultyType
+	syn keyword CTagsDefinedName DEBUG NO_MODE_SELCTED X O SINGLE_PLAYER EMPTY MULTI_PLAYER
+	
+endif
