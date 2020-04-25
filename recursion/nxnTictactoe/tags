@@ -1,0 +1,35 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+DEBUG	nxnTictactoe.c	/^#define DEBUG /;"	kind:d	file:
+EMPTY	nxnTictactoe.c	/^#define EMPTY /;"	kind:d	file:
+MULTI_PLAYER	nxnTictactoe.c	/^#define MULTI_PLAYER /;"	kind:d	file:
+NO_MODE_SELCTED	nxnTictactoe.c	/^#define NO_MODE_SELCTED /;"	kind:d	file:
+O	nxnTictactoe.c	/^#define O /;"	kind:d	file:
+SINGLE_PLAYER	nxnTictactoe.c	/^#define SINGLE_PLAYER /;"	kind:d	file:
+X	nxnTictactoe.c	/^#define X /;"	kind:d	file:
+__anon5e03e22a0103	nxnTictactoe.c	/^typedef enum{$/;"	kind:g	file:
+boardResults	nxnTictactoe.c	/^int boardResults( int *board, int size, int piece ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size,int piece)
+boardResults	nxnTictactoe.c	/^int boardResults( int *board, int size, int piece );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size,int piece)
+difficultyType	nxnTictactoe.c	/^} difficultyType;$/;"	kind:t	typeref:enum:__anon5e03e22a0103	file:
+easy	nxnTictactoe.c	/^        easy = 3,$/;"	kind:e	enum:__anon5e03e22a0103	file:	access:public
+getFreeSpaces	nxnTictactoe.c	/^int getFreeSpaces( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+hard	nxnTictactoe.c	/^        hard = 9$/;"	kind:e	enum:__anon5e03e22a0103	file:	access:public
+main	nxnTictactoe.c	/^int main ( int argc, char **argv ) { $/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+medium	nxnTictactoe.c	/^        medium = 6,$/;"	kind:e	enum:__anon5e03e22a0103	file:	access:public
+multiPlayerGame	nxnTictactoe.c	/^int multiPlayerGame( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
+multiPlayerGame	nxnTictactoe.c	/^int multiPlayerGame( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+nextMove	nxnTictactoe.c	/^int nextMove( int *board, int size, int level, int piece, int isAITurn, difficultyType difficult/;"	kind:f	typeref:typename:int	signature:(int * board,int size,int level,int piece,int isAITurn,difficultyType difficulty)
+nextMove	nxnTictactoe.c	/^int nextMove( int *board, int size, int level, int piece, int isAITurn, difficultyType difficult/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size,int level,int piece,int isAITurn,difficultyType difficulty)
+printBoard	nxnTictactoe.c	/^int printBoard( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
+printBoard	nxnTictactoe.c	/^int printBoard( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+setBoard	nxnTictactoe.c	/^int setBoard( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
+setBoard	nxnTictactoe.c	/^int setBoard( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+singlePlayerGame	nxnTictactoe.c	/^int singlePlayerGame( int *board, int size, int playerOnePiece, int playerTwoPiece, $/;"	kind:f	typeref:typename:int	signature:(int * board,int size,int playerOnePiece,int playerTwoPiece,int playerTurn,difficultyType difficulty)
+singlePlayerGame	nxnTictactoe.c	/^int singlePlayerGame( int *board, int size, int playerOnePiece, int playerTwoPiece, int playerTu/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size,int playerOnePiece,int playerTwoPiece,int playerTurn,difficultyType difficulty)

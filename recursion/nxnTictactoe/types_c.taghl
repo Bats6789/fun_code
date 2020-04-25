@@ -1,0 +1,11 @@
+syn keyword CTagsFunction nextMove main singlePlayerGame printBoard setBoard boardResults multiPlayerGame
+
+" Matches for file nxnTictactoe.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "nxnTictactoe.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsEnumeratorName __anon5e03e22a0103
+	syn keyword CTagsEnumerationValue medium easy hard
+	syn keyword CTagsFunction nextMove singlePlayerGame printBoard setBoard boardResults multiPlayerGame getFreeSpaces
+	syn keyword CTagsType difficultyType
+	syn keyword CTagsDefinedName SINGLE_PLAYER MULTI_PLAYER EMPTY X O NO_MODE_SELCTED DEBUG
+	
+endif
