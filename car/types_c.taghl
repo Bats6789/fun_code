@@ -1,0 +1,8 @@
+syn keyword CTagsFunction main
+
+" Matches for file main.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "main.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsLocalVariable quit renderer event window
+	syn keyword CTagsDefinedName HEIGHT WIDTH DELAY
+	
+endif

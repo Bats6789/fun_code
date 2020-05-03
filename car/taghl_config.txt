@@ -1,0 +1,2 @@
+IncludeLocals:True
+UserLibraries:C:\Users\Bats6789\C_code\fun_code\Libraries\SDL2\types_c.taghl
