@@ -1,0 +1,7 @@
+syn keyword CTagsFunction printBoard copyBoard check main solver
+
+" Matches for file puzzleSolver.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "puzzleSolver.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsFunction copyBoard solver printBoard check
+	
+endif
