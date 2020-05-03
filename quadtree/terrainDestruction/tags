@@ -1,0 +1,78 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+DELAY	main.c	/^#define DELAY /;"	kind:d	file:
+Root	main.c	/^        struct quadType *Root;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+SCREEN_HEIGHT	main.c	/^#define SCREEN_HEIGHT /;"	kind:d	file:
+SCREEN_WIDTH	main.c	/^#define SCREEN_WIDTH /;"	kind:d	file:
+__anon0d38083b0108	main.c	/^typedef struct {$/;"	kind:s	file:
+__anon0d38083b0108::health	main.c	/^        int health;$/;"	kind:m	struct:__anon0d38083b0108	typeref:typename:int	file:	access:public
+__anon0d38083b0108::pixel	main.c	/^        Uint32 pixel;$/;"	kind:m	struct:__anon0d38083b0108	typeref:typename:Uint32	file:	access:public
+bluePixel	main.c	/^        Uint32 bluePixel;$/;"	kind:l	function:main	typeref:typename:Uint32	file:
+bottomLeft	main.c	/^        struct quadType *bottomLeft;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+bottomRight	main.c	/^        struct quadType *bottomRight;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+count	main.c	/^        int count;$/;"	kind:l	function:createTree	typeref:typename:int	file:
+count	main.c	/^        int count;$/;"	kind:l	function:main	typeref:typename:int	file:
+count	main.c	/^        int count;$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
+count	main.c	/^        int count;$/;"	kind:l	function:updateTree	typeref:typename:int	file:
+createTree	main.c	/^int createTree( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, int/;"	kind:f	typeref:typename:int	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH)
+createTree	main.c	/^int createTree( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, int/;"	kind:p	typeref:typename:int	file:	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH)
+data	main.c	/^        environmentData data[ SCREEN_HEIGHT * SCREEN_WIDTH ];$/;"	kind:l	function:main	typeref:typename:environmentData[]	file:
+environmentData	main.c	/^} environmentData;$/;"	kind:t	typeref:struct:__anon0d38083b0108	file:
+event	main.c	/^        SDL_Event event;$/;"	kind:l	function:main	typeref:typename:SDL_Event	file:
+freeTree	main.c	/^void freeTree( quadType *root );$/;"	kind:p	typeref:typename:void	file:	signature:(quadType * root)
+freeTree	main.c	/^void freeTree( quadType *root ){$/;"	kind:f	typeref:typename:void	signature:(quadType * root)
+greenPixels	main.c	/^        Uint32 greenPixels[ 10 ];$/;"	kind:l	function:main	typeref:typename:Uint32[10]	file:
+h	main.c	/^        int h;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+health	main.c	/^        int health;$/;"	kind:l	function:main	typeref:typename:int	file:
+health	main.c	/^        int health;$/;"	kind:m	struct:__anon0d38083b0108	typeref:typename:int	file:	access:public
+health	main.c	/^        int health;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+i	main.c	/^                                for( int i = 0; i < 1000 && count < SCREEN_WIDTH * SCREEN_HEIGHT/;"	kind:l	function:main	typeref:typename:int	file:
+i	main.c	/^        for( int i = 0; i < 10; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
+i	main.c	/^        for( int i = 0; i < surface->clip_rect.w * surface->clip_rect.h; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
+main	main.c	/^int main ( int argc, char **argv ){ $/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+pixel	main.c	/^        Uint32 pixel;$/;"	kind:m	struct:__anon0d38083b0108	typeref:typename:Uint32	file:	access:public
+quadType	main.c	/^typedef struct quadType{$/;"	kind:s	file:
+quadType	main.c	/^} quadType;$/;"	kind:t	typeref:struct:quadType	file:
+quadType::Root	main.c	/^        struct quadType *Root;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+quadType::bottomLeft	main.c	/^        struct quadType *bottomLeft;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+quadType::bottomRight	main.c	/^        struct quadType *bottomRight;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+quadType::h	main.c	/^        int h;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+quadType::health	main.c	/^        int health;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+quadType::topLeft	main.c	/^        struct quadType *topLeft;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+quadType::topRight	main.c	/^        struct quadType *topRight;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+quadType::w	main.c	/^        int w;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+quadType::x	main.c	/^        int x;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+quadType::y	main.c	/^        int y;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+quit	main.c	/^        int quit;$/;"	kind:l	function:main	typeref:typename:int	file:
+renderer	main.c	/^        SDL_Renderer *renderer;$/;"	kind:l	function:main	typeref:typename:SDL_Renderer *	file:
+root	main.c	/^        quadType *root;$/;"	kind:l	function:main	typeref:typename:quadType *	file:
+split	main.c	/^        int split;$/;"	kind:l	function:createTree	typeref:typename:int	file:
+split	main.c	/^        int split;$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
+split	main.c	/^        int split;$/;"	kind:l	function:updateTree	typeref:typename:int	file:
+surface	main.c	/^        SDL_Surface *surface;$/;"	kind:l	function:main	typeref:typename:SDL_Surface *	file:
+texture	main.c	/^        SDL_Texture *texture;$/;"	kind:l	function:main	typeref:typename:SDL_Texture *	file:
+topLeft	main.c	/^        struct quadType *topLeft;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+topRight	main.c	/^        struct quadType *topRight;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
+updateSurface	main.c	/^int updateSurface( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, /;"	kind:f	typeref:typename:int	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH,SDL_Surface * surface)
+updateSurface	main.c	/^int updateSurface( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, /;"	kind:p	typeref:typename:int	file:	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH,SDL_Surface * surface)
+updateTree	main.c	/^int updateTree( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, int/;"	kind:f	typeref:typename:int	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH)
+updateTree	main.c	/^int updateTree( quadType *root, environmentData *data, int x, int y, int w, int h, int maxW, int/;"	kind:p	typeref:typename:int	file:	signature:(quadType * root,environmentData * data,int x,int y,int w,int h,int maxW,int maxH)
+w	main.c	/^        int w;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+window	main.c	/^        SDL_Window *window;$/;"	kind:l	function:main	typeref:typename:SDL_Window *	file:
+x	main.c	/^        int x;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+xValue	main.c	/^                                                for( int xValue = event->x - 5; xValue < event->/;"	kind:l	function:main	typeref:typename:int	file:
+xValue	main.c	/^                        for( int xValue = 0; xValue < w - 1; ++xValue ){$/;"	kind:l	function:createTree	typeref:typename:int	file:
+xValue	main.c	/^                        for( int xValue = 0; xValue < w - 1; ++xValue ){$/;"	kind:l	function:updateTree	typeref:typename:int	file:
+xValue	main.c	/^                        for( int xValue = 0; xValue < w; ++xValue ){$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
+y	main.c	/^        int y;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
+yValue	main.c	/^                                        for( int yValue = event->y - 5; yValue < event->y + 5 &&/;"	kind:l	function:main	typeref:typename:int	file:
+yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:createTree	typeref:typename:int	file:
+yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
+yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:updateTree	typeref:typename:int	file:

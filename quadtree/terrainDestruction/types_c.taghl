@@ -1,0 +1,12 @@
+syn keyword CTagsFunction main createTree freeTree updateSurface updateTree
+
+" Matches for file main.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "main.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsLocalVariable greenPixels surface window yValue i xValue texture bluePixel event renderer root quit split data count
+	syn keyword CTagsStructure __anon0d38083b0108
+	syn keyword CTagsMember x Root health w y pixel topLeft topRight h bottomLeft bottomRight
+	syn keyword CTagsFunction updateTree updateSurface createTree freeTree
+	syn keyword CTagsType quadType environmentData
+	syn keyword CTagsDefinedName DELAY SCREEN_HEIGHT SCREEN_WIDTH
+	
+endif
