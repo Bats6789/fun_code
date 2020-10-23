@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+ARRAY_SIZE	linkedList.c	/^#define ARRAY_SIZE /;"	d	file:
+all	makefile	/^all:$/;"	t
+createList	linkedList.c	/^struct doubleList *createList( int num[], int size ){$/;"	f	typeref:struct:doubleList *
+data	linkedList.c	/^    int data;$/;"	m	struct:doubleList	typeref:typename:int	file:
+data	linkedList.c	/^    int data;$/;"	m	struct:list	typeref:typename:int	file:
+doubleList	linkedList.c	/^struct doubleList {$/;"	s	file:
+list	linkedList.c	/^struct list {$/;"	s	file:
+main	linkedList.c	/^int main ( int argc, char **argv ){$/;"	f	typeref:typename:int
+next	linkedList.c	/^    struct doubleList *next;$/;"	m	struct:doubleList	typeref:struct:doubleList *	file:
+next	linkedList.c	/^    struct list *next;$/;"	m	struct:list	typeref:struct:list *	file:
+prev	linkedList.c	/^    struct doubleList *prev;$/;"	m	struct:doubleList	typeref:struct:doubleList *	file:
+printList	linkedList.c	/^void printList( struct doubleList *headNode ){$/;"	f	typeref:typename:void

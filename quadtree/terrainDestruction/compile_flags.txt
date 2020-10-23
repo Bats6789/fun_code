@@ -1,0 +1,2 @@
+-I../../Libraries/
+-L../../Libraries/lib/

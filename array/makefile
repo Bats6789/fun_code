@@ -1,4 +1,4 @@
-all: forLoopArray memsetArray
+all: forLoopArray memsetArray bracketVsAdd
 	echo done
 
 forLoopArray:
@@ -6,3 +6,6 @@ forLoopArray:
 
 memsetArray:
 	gcc memsetArray.c -o memsetArray.exe
+
+bracketVsAdd:
+	gcc bracketVsAdd.c -o bracketVsAdd.exe

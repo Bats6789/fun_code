@@ -1,7 +1,18 @@
-syn keyword CTagsFunction printBoard copyBoard check main solver
+syn keyword CTagsFunction printBoard help setBoardGrid solver copyBoard clearBoard check main mouseOver
 
+" Matches for file puzzleSolverGraphics.c:
+if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "puzzleSolverGraphics.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
+	syn keyword CTagsLocalVariable board numSrc event numbers surface innerBorder quit highlightColor white window highlight black outerBorder renderer results i
+	syn keyword CTagsStructure __anonadd72d8c0108
+	syn keyword CTagsMember gridProp value
+	syn keyword CTagsFunction mouseOver clearBoard setBoardGrid
+	syn keyword CTagsType boardType
+	syn keyword CTagsDefinedName BOARD_START_Y BOARD_START_X TILE_SIZE BORDER_WIDTH
+	
+endif
 " Matches for file puzzleSolver.c:
 if (has_key(b:TagHighlightPrivate, "NormalisedPath") && b:TagHighlightPrivate["NormalisedPath"] == "puzzleSolver.c") || TagHighlight#Option#GetOption("IgnoreFileScope")
-	syn keyword CTagsFunction copyBoard solver printBoard check
+	syn keyword CTagsLocalVariable board row bestResults boxWidth checkVals num postition col box newBoard count inputFile outputFile results i
+	syn keyword CTagsFunction printBoard help solver copyBoard check
 	
 endif

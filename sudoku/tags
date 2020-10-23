@@ -7,12 +7,70 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
+BOARD_START_X	puzzleSolverGraphics.c	/^#define BOARD_START_X /;"	kind:d	file:
+BOARD_START_Y	puzzleSolverGraphics.c	/^#define BOARD_START_Y /;"	kind:d	file:
+BORDER_WIDTH	puzzleSolverGraphics.c	/^#define BORDER_WIDTH /;"	kind:d	file:
+TILE_SIZE	puzzleSolverGraphics.c	/^#define TILE_SIZE /;"	kind:d	file:
+__anonadd72d8c0108	puzzleSolverGraphics.c	/^typedef struct {$/;"	kind:s	file:
+__anonadd72d8c0108::gridProp	puzzleSolverGraphics.c	/^        SDL_Rect gridProp;$/;"	kind:m	struct:__anonadd72d8c0108	typeref:typename:SDL_Rect	file:	access:public
+__anonadd72d8c0108::value	puzzleSolverGraphics.c	/^        int value;$/;"	kind:m	struct:__anonadd72d8c0108	typeref:typename:int	file:	access:public
+bestResults	puzzleSolver.c	/^        int bestResults;$/;"	kind:l	function:check	typeref:typename:int	file:
+black	puzzleSolverGraphics.c	/^        SDL_Color black;$/;"	kind:l	function:main	typeref:typename:SDL_Color	file:
+board	puzzleSolver.c	/^        int board[ 81 ];$/;"	kind:l	function:main	typeref:typename:int[81]	file:
+board	puzzleSolverGraphics.c	/^        boardType board[ 81 ];$/;"	kind:l	function:main	typeref:typename:boardType[81]	file:
+boardType	puzzleSolverGraphics.c	/^} boardType;$/;"	kind:t	typeref:struct:__anonadd72d8c0108	file:
+box	puzzleSolver.c	/^        int box;$/;"	kind:l	function:check	typeref:typename:int	file:
+boxWidth	puzzleSolver.c	/^        int boxWidth;$/;"	kind:l	function:check	typeref:typename:int	file:
 check	puzzleSolver.c	/^int check( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
 check	puzzleSolver.c	/^int check( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+checkVals	puzzleSolver.c	/^        int checkVals[ size + 1 ];$/;"	kind:l	function:check	typeref:typename:int[]	file:
+clearBoard	puzzleSolverGraphics.c	/^int clearBoard( boardType board[ 81 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(boardType board[81])
+clearBoard	puzzleSolverGraphics.c	/^int clearBoard( boardType board[ 81 ] ){$/;"	kind:f	typeref:typename:int	signature:(boardType board[81])
+col	puzzleSolver.c	/^        int col;$/;"	kind:l	function:check	typeref:typename:int	file:
 copyBoard	puzzleSolver.c	/^int copyBoard( int *dstBoard, int *srcBoard, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * dstBoard,int * srcBoard,int size)
 copyBoard	puzzleSolver.c	/^int copyBoard( int *dstBoard, int *srcBoard, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * dstBoard,int * srcBoard,int size)
+count	puzzleSolver.c	/^        int count;$/;"	kind:l	function:copyBoard	typeref:typename:int	file:
+count	puzzleSolver.c	/^        int count;$/;"	kind:l	function:printBoard	typeref:typename:int	file:
+event	puzzleSolverGraphics.c	/^        SDL_Event event;$/;"	kind:l	function:main	typeref:typename:SDL_Event	file:
+gridProp	puzzleSolverGraphics.c	/^        SDL_Rect gridProp;$/;"	kind:m	struct:__anonadd72d8c0108	typeref:typename:SDL_Rect	file:	access:public
+help	puzzleSolver.c	/^void help( void ) {$/;"	kind:f	typeref:typename:void	signature:(void)
+help	puzzleSolver.c	/^void help( void );$/;"	kind:p	typeref:typename:void	file:	signature:(void)
+highlight	puzzleSolverGraphics.c	/^        boardType highlight;$/;"	kind:l	function:main	typeref:typename:boardType	file:
+highlightColor	puzzleSolverGraphics.c	/^        SDL_Color highlightColor;$/;"	kind:l	function:main	typeref:typename:SDL_Color	file:
+i	puzzleSolver.c	/^                for(  int i = 1; i < size + 1; ++i ){$/;"	kind:l	function:check	typeref:typename:int	file:
+i	puzzleSolver.c	/^                for( int i = 0; i < size + 1; ++i ){$/;"	kind:l	function:check	typeref:typename:int	file:
+i	puzzleSolver.c	/^        for( int i = 0; i < 81; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
+i	puzzleSolverGraphics.c	/^                for( int i = 0; i < 81; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
+i	puzzleSolverGraphics.c	/^        for( int i = 0; i < 10; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
+i	puzzleSolverGraphics.c	/^        for( int i = 0; i < 81; ++i ){$/;"	kind:l	function:clearBoard	typeref:typename:int	file:
+i	puzzleSolverGraphics.c	/^        for( int i = 0; i < 81; ++i ){$/;"	kind:l	function:setBoardGrid	typeref:typename:int	file:
+innerBorder	puzzleSolverGraphics.c	/^        SDL_Rect innerBorder;$/;"	kind:l	function:main	typeref:typename:SDL_Rect	file:
+inputFile	puzzleSolver.c	/^        FILE *inputFile;$/;"	kind:l	function:main	typeref:typename:FILE *	file:
 main	puzzleSolver.c	/^int main ( int argc, char **argv ){ $/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+main	puzzleSolverGraphics.c	/^int main( int argc, char **argv ){$/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
+mouseOver	puzzleSolverGraphics.c	/^int mouseOver( int x, int y, SDL_Rect box );$/;"	kind:p	typeref:typename:int	file:	signature:(int x,int y,SDL_Rect box)
+mouseOver	puzzleSolverGraphics.c	/^int mouseOver( int x, int y, SDL_Rect box ){$/;"	kind:f	typeref:typename:int	signature:(int x,int y,SDL_Rect box)
+newBoard	puzzleSolver.c	/^        int newBoard[ size * size ];$/;"	kind:l	function:solver	typeref:typename:int[]	file:
+num	puzzleSolver.c	/^                        for( int num = 1; num <= 9 && results <= 0; ++num ){$/;"	kind:l	function:solver	typeref:typename:int	file:
+numSrc	puzzleSolverGraphics.c	/^        SDL_Rect numSrc[ 10 ];$/;"	kind:l	function:main	typeref:typename:SDL_Rect[10]	file:
+numbers	puzzleSolverGraphics.c	/^        SDL_Texture *numbers;$/;"	kind:l	function:main	typeref:typename:SDL_Texture *	file:
+outerBorder	puzzleSolverGraphics.c	/^        SDL_Rect outerBorder;$/;"	kind:l	function:main	typeref:typename:SDL_Rect	file:
+outputFile	puzzleSolver.c	/^        FILE *outputFile;$/;"	kind:l	function:main	typeref:typename:FILE *	file:
+postition	puzzleSolver.c	/^        for( int postition = 0; postition < 81 && results != 1; ++postition ){$/;"	kind:l	function:solver	typeref:typename:int	file:
 printBoard	puzzleSolver.c	/^int printBoard( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
 printBoard	puzzleSolver.c	/^int printBoard( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+quit	puzzleSolverGraphics.c	/^        int quit;$/;"	kind:l	function:main	typeref:typename:int	file:
+renderer	puzzleSolverGraphics.c	/^        SDL_Renderer *renderer;$/;"	kind:l	function:main	typeref:typename:SDL_Renderer *	file:
+results	puzzleSolver.c	/^        int results;$/;"	kind:l	function:check	typeref:typename:int	file:
+results	puzzleSolver.c	/^        int results;$/;"	kind:l	function:main	typeref:typename:int	file:
+results	puzzleSolver.c	/^        int results;$/;"	kind:l	function:solver	typeref:typename:int	file:
+results	puzzleSolverGraphics.c	/^        int results;$/;"	kind:l	function:mouseOver	typeref:typename:int	file:
+row	puzzleSolver.c	/^        int row;$/;"	kind:l	function:check	typeref:typename:int	file:
+setBoardGrid	puzzleSolverGraphics.c	/^int setBoardGrid( boardType board[ 81 ] );$/;"	kind:p	typeref:typename:int	file:	signature:(boardType board[81])
+setBoardGrid	puzzleSolverGraphics.c	/^int setBoardGrid( boardType board[ 81 ] ){$/;"	kind:f	typeref:typename:int	signature:(boardType board[81])
 solver	puzzleSolver.c	/^int solver( int *board, int size ) {$/;"	kind:f	typeref:typename:int	signature:(int * board,int size)
 solver	puzzleSolver.c	/^int solver( int *board, int size );$/;"	kind:p	typeref:typename:int	file:	signature:(int * board,int size)
+surface	puzzleSolverGraphics.c	/^        SDL_Surface *surface;$/;"	kind:l	function:main	typeref:typename:SDL_Surface *	file:
+value	puzzleSolverGraphics.c	/^        int value;$/;"	kind:m	struct:__anonadd72d8c0108	typeref:typename:int	file:	access:public
+white	puzzleSolverGraphics.c	/^        SDL_Color white;$/;"	kind:l	function:main	typeref:typename:SDL_Color	file:
+window	puzzleSolverGraphics.c	/^        SDL_Window *window;$/;"	kind:l	function:main	typeref:typename:SDL_Window *	file:

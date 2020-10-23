@@ -2,6 +2,7 @@
  * Name: bubbleSort.c
  * Auth: Blake Wingard
  * Desc: Performs a live demonstration of a bubble sort.
+ * Vers: 1.1.0 05/30/2020 CBW - Optimized cirle drawing algorithm.
  * Vers: 1.0.4 04/03/2020 CBW - Minor optimization.
  * Vers: 1.0.3 03/30/2020 CBW - Added comments for clarity.
  * Vers: 1.0.2 03/28/2020 CBW - Implemented numbers and swapping.
@@ -18,7 +19,7 @@
 #include <time.h>
 
 #define RADIUS 50
-#define DELAY 25
+#define DELAY 200
 
 typedef struct {
 	SDL_Texture *numberTexture;	// the image of the number
@@ -368,20 +369,111 @@ int drawCircle( circlePropType circleProp, SDL_Renderer *renderer ){
 	int centerX;
 	int centerY;
 
+    // New algorithm
+    int radius = RADIUS;
+    int x = radius - 1;
+    int y = 0;
+    int tx = 1;
+    int ty = 1;
+    int error = tx - 2 * radius;
+
 	centerX = circleProp.dst.x + circleProp.dst.w / 2;
 	centerY = circleProp.dst.y + circleProp.dst.h / 2;
 
 	// draw the circle
+    while( x >= y ){
+        SDL_RenderDrawLine( renderer, centerX - x, centerY - y, centerX + x, centerY - y );
+        SDL_RenderDrawLine( renderer, centerX - x, centerY + y, centerX + x, centerY + y );
+        SDL_RenderDrawLine( renderer, centerX - y, centerY - x, centerX + y, centerY - x );
+        SDL_RenderDrawLine( renderer, centerX - y, centerY + x, centerX + y, centerY + x );
+
+        if( error <= 0 ){
+            ++y;
+            error += ty;
+            ty += 2;
+        }
+
+        if( error > 0 ){
+            --x;
+            tx += 2;
+            error += tx - 2 * radius;
+        }
+    }
+    /*
+    for( int y = -radius; y <= radius; ++y ){
+        for( int x = -radius; x <= radius; ++x ){
+            if( x * x + y * y <= radius * radius ){
+                SDL_RenderDrawPoint( renderer, centerX + x, centerY + y );
+            }
+        }
+    }
+    */
+    /* old algorithm
 	for( double angle = 0; angle < 360; angle += 0.5 ){
 		SDL_RenderDrawLine( renderer, centerX, centerY,
 				centerX + RADIUS * cos( angle * M_PI / 180.0 ),
 				centerY + RADIUS * sin( angle * M_PI / 180.0 ));
 	}
-	// draw the number
-	if( SDL_RenderCopy( renderer, circleProp.numberTexture, NULL, &(circleProp.numberRect)) < 0 ){
-		SDL_Log( "Failed to renderCopy: %s", SDL_GetError());
-	}
-	return( 0 );
+    */
+    /*
+    for( int i = 0; i < RADIUS - 1; ++i ){
+        while( x >= y ){
+            SDL_RenderDrawPoint( renderer, centerX + x, centerY - y );
+            SDL_RenderDrawPoint( renderer, centerX + x, centerY + y );
+            SDL_RenderDrawPoint( renderer, centerX - x, centerY - y );
+            SDL_RenderDrawPoint( renderer, centerX - x, centerY + y );
+            SDL_RenderDrawPoint( renderer, centerX + y, centerY - x );
+            SDL_RenderDrawPoint( renderer, centerX + y, centerY + x );
+            SDL_RenderDrawPoint( renderer, centerX - y, centerY - x );
+            SDL_RenderDrawPoint( renderer, centerX - y, centerY + x );
+
+            if( error <= 0 ){
+                ++y;
+                error += ty;
+                ty += 2;
+            }
+
+            if( error > 0 ){
+                --x;
+                tx += 2;
+                error += tx - 2 * radius;
+            }
+        }
+        --radius;
+        x = radius - 1;
+        y = 0;
+        tx = 1;
+        ty = 1;
+        error = tx - 2 * radius;
+    }  
+    while( x >= y ){
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX + x, centerY - y );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX + x, centerY + y );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX - x, centerY - y );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX - x, centerY + y );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX + y, centerY - x );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX + y, centerY + x );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX - y, centerY - x );
+        SDL_RenderDrawLine( renderer, centerX, centerY, centerX - y, centerY + x );
+
+        if( error <= 0 ){
+            ++y;
+            error += ty;
+            ty += 2;
+        }
+
+        if( error > 0 ){
+            --x;
+            tx += 2;
+            error += tx - 2 * radius;
+        }
+    }
+    */
+    // draw the number
+    if( SDL_RenderCopy( renderer, circleProp.numberTexture, NULL, &(circleProp.numberRect)) < 0 ){
+        SDL_Log( "Failed to renderCopy: %s", SDL_GetError());
+    }
+    return( 0 );
 }
 
 /*
@@ -395,51 +487,51 @@ int drawCircle( circlePropType circleProp, SDL_Renderer *renderer ){
  * 	int num - the number being assigned
  */
 int setCircleNum( circlePropType *circleProp, SDL_Renderer *renderer, TTF_Font *font, int num ){
-	SDL_Surface *tmpSurface;
-	SDL_Color color;
-	double shift;
-	double scale;
-	char number[ 3 ];
+    SDL_Surface *tmpSurface;
+    SDL_Color color;
+    double shift;
+    double scale;
+    char number[ 3 ];
 
-	color.r = 0;
-	color.g = 0;
-	color.b = 0;
-	color.a = 255;
+    color.r = 0;
+    color.g = 0;
+    color.b = 0;
+    color.a = 255;
 
-	// number must be less than 100
-	if( num >= 100 ){
-		return( -1 );
-	} else if( num >= 10 ){
-		// if the number has two digits than no shifting or scaling is needed
-		shift = 0.0;
-		scale = 1.0;
-	} else {
-		// if the number has one digit than shifting and scaling is needed
-		shift = 0.15;
-		scale = 0.5;
-	}
+    // number must be less than 100
+    if( num >= 100 ){
+        return( -1 );
+    } else if( num >= 10 ){
+        // if the number has two digits than no shifting or scaling is needed
+        shift = 0.0;
+        scale = 1.0;
+    } else {
+        // if the number has one digit than shifting and scaling is needed
+        shift = 0.15;
+        scale = 0.5;
+    }
 
-	// render the number into a texture
-	sprintf( number, "%d", num );
-	tmpSurface = TTF_RenderText_Solid( font, number, color );
-	if( tmpSurface == NULL ){
-		SDL_Log( "tmpSurface failed to create for number %d: %s", num, SDL_GetError());
-		return( -1 );
-	}
-	circleProp->numberTexture = SDL_CreateTextureFromSurface( renderer, tmpSurface );
-	if( circleProp->numberTexture == NULL ){
-		SDL_Log( "Failed to create Texture for number %d: %s" );
-	}
-	// assign the drawing properties for the number
-	circleProp->numberRect.x = circleProp->dst.x + 2 * RADIUS * ( 0.25 + shift );
-	circleProp->numberRect.y = circleProp->dst.y + 2 * RADIUS * 0.175;
-	circleProp->numberRect.w = 2 * RADIUS * 0.5 * scale;
-	circleProp->numberRect.h = 2 * RADIUS * 0.6;
-	// set the circles number
-	circleProp->number = num;
+    // render the number into a texture
+    sprintf( number, "%d", num );
+    tmpSurface = TTF_RenderText_Solid( font, number, color );
+    if( tmpSurface == NULL ){
+        SDL_Log( "tmpSurface failed to create for number %d: %s", num, SDL_GetError());
+        return( -1 );
+    }
+    circleProp->numberTexture = SDL_CreateTextureFromSurface( renderer, tmpSurface );
+    if( circleProp->numberTexture == NULL ){
+        SDL_Log( "Failed to create Texture for number %d: %s" );
+    }
+    // assign the drawing properties for the number
+    circleProp->numberRect.x = circleProp->dst.x + 2 * RADIUS * ( 0.25 + shift );
+    circleProp->numberRect.y = circleProp->dst.y + 2 * RADIUS * 0.175;
+    circleProp->numberRect.w = 2 * RADIUS * 0.5 * scale;
+    circleProp->numberRect.h = 2 * RADIUS * 0.6;
+    // set the circles number
+    circleProp->number = num;
 
-	free( tmpSurface );
-	return( 0 );
+    free( tmpSurface );
+    return( 0 );
 }
 
 /*
@@ -451,48 +543,48 @@ int setCircleNum( circlePropType *circleProp, SDL_Renderer *renderer, TTF_Font *
  * 	circlePropType *srcCircle - the source of data 
  */
 int circleEqual( circlePropType *dstCircle, circlePropType *srcCircle ){
-	dstCircle->numberTexture = 
-		srcCircle->numberTexture;
-	// don't copy the actual location of circle, just features.
-	/*
-	   dstCircle->dst.x =
-	   srcCircle->dst.x;
-	   dstCircle->dst.y =
-	   srcCircle->dst.y;
-	   dstCircle->dst.w =
-	   srcCircle->dst.w;
-	   dstCircle->dst.h =
-	   srcCircle->dst.h;
-	   */
-	dstCircle->color.r = 
-		srcCircle->color.r;
-	dstCircle->color.g = 
-		srcCircle->color.g;
-	dstCircle->color.b = 
-		srcCircle->color.b;
-	dstCircle->color.a = 
-		srcCircle->color.a;
-	// x and y might need to be shifted. But not assigned.
-	/*
-	   dstCircle->numberRect.x =
-	   srcCircle->numberRect.x;
-	   dstCircle->numberRect.y =
-	   srcCircle->numberRect.y;
-	   */
-	// shift x and y if needed.
-	if( srcCircle->number < 10 && dstCircle->number >= 10 ){
-		dstCircle->numberRect.x = dstCircle->numberRect.x + 2 * RADIUS * 0.15;
-	} else if( srcCircle->number >= 10 && dstCircle->number < 10 ){
-		dstCircle->numberRect.x = dstCircle->numberRect.x - 2 * RADIUS * 0.15;
-	}
-	dstCircle->numberRect.w =
-		srcCircle->numberRect.w;
-	dstCircle->numberRect.h =
-		srcCircle->numberRect.h;
-	// set number
-	dstCircle->number =
-		srcCircle->number;
-	return( 0 );
+    dstCircle->numberTexture = 
+        srcCircle->numberTexture;
+    // don't copy the actual location of circle, just features.
+    /*
+       dstCircle->dst.x =
+       srcCircle->dst.x;
+       dstCircle->dst.y =
+       srcCircle->dst.y;
+       dstCircle->dst.w =
+       srcCircle->dst.w;
+       dstCircle->dst.h =
+       srcCircle->dst.h;
+       */
+    dstCircle->color.r = 
+        srcCircle->color.r;
+    dstCircle->color.g = 
+        srcCircle->color.g;
+    dstCircle->color.b = 
+        srcCircle->color.b;
+    dstCircle->color.a = 
+        srcCircle->color.a;
+    // x and y might need to be shifted. But not assigned.
+    /*
+       dstCircle->numberRect.x =
+       srcCircle->numberRect.x;
+       dstCircle->numberRect.y =
+       srcCircle->numberRect.y;
+       */
+    // shift x and y if needed.
+    if( srcCircle->number < 10 && dstCircle->number >= 10 ){
+        dstCircle->numberRect.x = dstCircle->numberRect.x + 2 * RADIUS * 0.15;
+    } else if( srcCircle->number >= 10 && dstCircle->number < 10 ){
+        dstCircle->numberRect.x = dstCircle->numberRect.x - 2 * RADIUS * 0.15;
+    }
+    dstCircle->numberRect.w =
+        srcCircle->numberRect.w;
+    dstCircle->numberRect.h =
+        srcCircle->numberRect.h;
+    // set number
+    dstCircle->number =
+        srcCircle->number;
+    return( 0 );
 }
 
 /*
@@ -507,60 +599,60 @@ int circleEqual( circlePropType *dstCircle, circlePropType *srcCircle ){
  * 	int circleY - the center y value for the circle cluster.
  */
 int assignCircles( circlePropType circleProp[ 7 ], SDL_Renderer * renderer, TTF_Font *font, int circleX, int circleY ){
-	// location
-	for( int i = 0; i < 7; ++i ){
-		// properties (location, height, width, radius )
-		circleProp[ i ].dst.x = circleX + 2 * RADIUS * i;
-		circleProp[ i ].dst.y = circleY;
-		circleProp[ i ].dst.h = 2 * RADIUS;
-		circleProp[ i ].dst.w = 2 * RADIUS;
-		circleProp[ i ].radius = RADIUS;
-		// numbers
-		setCircleNum( &(circleProp[ i ]), renderer, font, rand() % 100 );
-	}
+    // location
+    for( int i = 0; i < 7; ++i ){
+        // properties (location, height, width, radius )
+        circleProp[ i ].dst.x = circleX + 2 * RADIUS * i;
+        circleProp[ i ].dst.y = circleY;
+        circleProp[ i ].dst.h = 2 * RADIUS;
+        circleProp[ i ].dst.w = 2 * RADIUS;
+        circleProp[ i ].radius = RADIUS;
+        // numbers
+        setCircleNum( &(circleProp[ i ]), renderer, font, rand() % 100 );
+    }
 
-	// colors
-	// red
-	circleProp[ 0 ].color.r = 255;
-	circleProp[ 0 ].color.g = 0;
-	circleProp[ 0 ].color.b = 0;
-	circleProp[ 0 ].color.a = 255;
+    // colors
+    // red
+    circleProp[ 0 ].color.r = 255;
+    circleProp[ 0 ].color.g = 0;
+    circleProp[ 0 ].color.b = 0;
+    circleProp[ 0 ].color.a = 255;
 
-	// orange
-	circleProp[ 1 ].color.r = 255;
-	circleProp[ 1 ].color.g = 165;
-	circleProp[ 1 ].color.b = 0;
-	circleProp[ 1 ].color.a = 255;
+    // orange
+    circleProp[ 1 ].color.r = 255;
+    circleProp[ 1 ].color.g = 165;
+    circleProp[ 1 ].color.b = 0;
+    circleProp[ 1 ].color.a = 255;
 
-	// yellow
-	circleProp[ 2 ].color.r = 255;
-	circleProp[ 2 ].color.g = 255;
-	circleProp[ 2 ].color.b = 0;
-	circleProp[ 2 ].color.a = 255;
+    // yellow
+    circleProp[ 2 ].color.r = 255;
+    circleProp[ 2 ].color.g = 255;
+    circleProp[ 2 ].color.b = 0;
+    circleProp[ 2 ].color.a = 255;
 
-	// green
-	circleProp[ 3 ].color.r = 0;
-	circleProp[ 3 ].color.g = 255;
-	circleProp[ 3 ].color.b = 0;
-	circleProp[ 3 ].color.a = 255;
+    // green
+    circleProp[ 3 ].color.r = 0;
+    circleProp[ 3 ].color.g = 255;
+    circleProp[ 3 ].color.b = 0;
+    circleProp[ 3 ].color.a = 255;
 
-	// blue
-	circleProp[ 4 ].color.r = 0;
-	circleProp[ 4 ].color.g = 0;
-	circleProp[ 4 ].color.b = 255;
-	circleProp[ 4 ].color.a = 255;
+    // blue
+    circleProp[ 4 ].color.r = 0;
+    circleProp[ 4 ].color.g = 0;
+    circleProp[ 4 ].color.b = 255;
+    circleProp[ 4 ].color.a = 255;
 
-	// indigo
-	circleProp[ 5 ].color.r = 75;
-	circleProp[ 5 ].color.g = 0;
-	circleProp[ 5 ].color.b = 130;
-	circleProp[ 5 ].color.a = 255;
+    // indigo
+    circleProp[ 5 ].color.r = 75;
+    circleProp[ 5 ].color.g = 0;
+    circleProp[ 5 ].color.b = 130;
+    circleProp[ 5 ].color.a = 255;
 
-	// violet
-	circleProp[ 6 ].color.r = 128;
-	circleProp[ 6 ].color.g = 0;
-	circleProp[ 6 ].color.b = 128;
-	circleProp[ 6 ].color.a = 255;
+    // violet
+    circleProp[ 6 ].color.r = 128;
+    circleProp[ 6 ].color.g = 0;
+    circleProp[ 6 ].color.b = 128;
+    circleProp[ 6 ].color.a = 255;
 
-	return( 0 );
+    return( 0 );
 }

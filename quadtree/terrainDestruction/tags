@@ -8,6 +8,7 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/3f64f1fc/
 DELAY	main.c	/^#define DELAY /;"	kind:d	file:
+RADIUS_SCALE	main.c	/^        int RADIUS_SCALE;$/;"	kind:l	function:main	typeref:typename:int	file:
 Root	main.c	/^        struct quadType *Root;$/;"	kind:m	struct:quadType	typeref:struct:quadType *	file:	access:public
 SCREEN_HEIGHT	main.c	/^#define SCREEN_HEIGHT /;"	kind:d	file:
 SCREEN_WIDTH	main.c	/^#define SCREEN_WIDTH /;"	kind:d	file:
@@ -33,7 +34,6 @@ h	main.c	/^        int h;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	
 health	main.c	/^        int health;$/;"	kind:l	function:main	typeref:typename:int	file:
 health	main.c	/^        int health;$/;"	kind:m	struct:__anon0d38083b0108	typeref:typename:int	file:	access:public
 health	main.c	/^        int health;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
-i	main.c	/^                                for( int i = 0; i < 1000 && count < SCREEN_WIDTH * SCREEN_HEIGHT/;"	kind:l	function:main	typeref:typename:int	file:
 i	main.c	/^        for( int i = 0; i < 10; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
 i	main.c	/^        for( int i = 0; i < surface->clip_rect.w * surface->clip_rect.h; ++i ){$/;"	kind:l	function:main	typeref:typename:int	file:
 main	main.c	/^int main ( int argc, char **argv ){ $/;"	kind:f	typeref:typename:int	signature:(int argc,char ** argv)
@@ -51,6 +51,7 @@ quadType::w	main.c	/^        int w;$/;"	kind:m	struct:quadType	typeref:typename:
 quadType::x	main.c	/^        int x;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
 quadType::y	main.c	/^        int y;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
 quit	main.c	/^        int quit;$/;"	kind:l	function:main	typeref:typename:int	file:
+radius	main.c	/^        int radius;$/;"	kind:l	function:main	typeref:typename:int	file:
 renderer	main.c	/^        SDL_Renderer *renderer;$/;"	kind:l	function:main	typeref:typename:SDL_Renderer *	file:
 root	main.c	/^        quadType *root;$/;"	kind:l	function:main	typeref:typename:quadType *	file:
 split	main.c	/^        int split;$/;"	kind:l	function:createTree	typeref:typename:int	file:
@@ -67,12 +68,12 @@ updateTree	main.c	/^int updateTree( quadType *root, environmentData *data, int x
 w	main.c	/^        int w;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
 window	main.c	/^        SDL_Window *window;$/;"	kind:l	function:main	typeref:typename:SDL_Window *	file:
 x	main.c	/^        int x;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
-xValue	main.c	/^                                                for( int xValue = event->x - 5; xValue < event->/;"	kind:l	function:main	typeref:typename:int	file:
+xValue	main.c	/^                                                for( int xValue = event.button.x - RADIUS_SCALE /;"	kind:l	function:main	typeref:typename:int	file:
 xValue	main.c	/^                        for( int xValue = 0; xValue < w - 1; ++xValue ){$/;"	kind:l	function:createTree	typeref:typename:int	file:
 xValue	main.c	/^                        for( int xValue = 0; xValue < w - 1; ++xValue ){$/;"	kind:l	function:updateTree	typeref:typename:int	file:
 xValue	main.c	/^                        for( int xValue = 0; xValue < w; ++xValue ){$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
 y	main.c	/^        int y;$/;"	kind:m	struct:quadType	typeref:typename:int	file:	access:public
-yValue	main.c	/^                                        for( int yValue = event->y - 5; yValue < event->y + 5 &&/;"	kind:l	function:main	typeref:typename:int	file:
+yValue	main.c	/^                                        for( int yValue = event.button.y - RADIUS_SCALE * 5; yVa/;"	kind:l	function:main	typeref:typename:int	file:
 yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:createTree	typeref:typename:int	file:
 yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:updateSurface	typeref:typename:int	file:
 yValue	main.c	/^                for( int yValue = 0; yValue < h; ++yValue ){$/;"	kind:l	function:updateTree	typeref:typename:int	file:
